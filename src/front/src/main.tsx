@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { I18nProvider } from './i18n/I18nContext';
 
 const rootElement = document.getElementById('root');
 
@@ -12,6 +13,8 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <App />
+    <I18nProvider defaultLanguage="ja">
+      <App />
+    </I18nProvider>
   </React.StrictMode>
 );

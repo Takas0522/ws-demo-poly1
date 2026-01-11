@@ -1,15 +1,19 @@
 import React from 'react';
 import { usePermissions } from '../contexts/PermissionContext';
+import { useI18n } from '../i18n/I18nContext';
 import { AuthorizedComponentProps } from '../types/permission';
 
 /**
  * Default loading component shown during permission checks
  */
-const DefaultLoader: React.FC = () => (
-  <div style={{ opacity: 0.5, pointerEvents: 'none' }}>
-    Loading...
-  </div>
-);
+const DefaultLoader: React.FC = () => {
+  const { t } = useI18n();
+  return (
+    <div style={{ opacity: 0.5, pointerEvents: 'none' }}>
+      {t.loading}
+    </div>
+  );
+};
 
 /**
  * AuthorizedComponent - Wrapper component for permission-based rendering

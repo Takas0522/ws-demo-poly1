@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { usePermissions } from '../contexts/PermissionContext';
+import { useI18n } from '../i18n/I18nContext';
 import { Permission } from '../types/permission';
 
 interface PermissionDebuggerProps {
@@ -26,6 +27,7 @@ export const PermissionDebugger: React.FC<PermissionDebuggerProps> = ({
   defaultOpen = false,
 }) => {
   const { user, permissions, hasPermission, isLoading } = usePermissions();
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const [testPermission, setTestPermission] = useState('');
   const [testResult, setTestResult] = useState<boolean | null>(null);
@@ -93,7 +95,7 @@ export const PermissionDebugger: React.FC<PermissionDebuggerProps> = ({
           zIndex: 9999,
         }}
       >
-        🔐 Debug Permissions
+        {t.debugPermissions}
       </button>
     );
   }
@@ -102,7 +104,7 @@ export const PermissionDebugger: React.FC<PermissionDebuggerProps> = ({
     <div style={containerStyle}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
         <h3 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>
-          🔐 Permission Debugger
+          {t.permissionDebugger}
         </h3>
         <button
           onClick={() => setIsOpen(false)}
@@ -113,27 +115,27 @@ export const PermissionDebugger: React.FC<PermissionDebuggerProps> = ({
       </div>
 
       {isLoading ? (
-        <div>Loading permissions...</div>
+        <div>{t.loading}</div>
       ) : (
         <>
           <div style={{ marginBottom: '16px' }}>
             <h4 style={{ margin: '0 0 8px 0', fontSize: '13px', color: '#569cd6' }}>
-              User Info
+              {t.userInfo}
             </h4>
             {user ? (
               <div>
-                <div><strong>ID:</strong> {user.id}</div>
-                <div><strong>Username:</strong> {user.username}</div>
-                <div><strong>Roles:</strong> {user.roles.join(', ') || 'None'}</div>
+                <div><strong>{t.id}:</strong> {user.id}</div>
+                <div><strong>{t.username}:</strong> {user.username}</div>
+                <div><strong>{t.roles}:</strong> {user.roles.join(', ') || t.none}</div>
               </div>
             ) : (
-              <div style={{ color: '#ce9178' }}>No user logged in</div>
+              <div style={{ color: '#ce9178' }}>{t.noUserLoggedIn}</div>
             )}
           </div>
 
           <div style={{ marginBottom: '16px' }}>
             <h4 style={{ margin: '0 0 8px 0', fontSize: '13px', color: '#569cd6' }}>
-              Current Permissions ({permissions.length})
+              {t.currentPermissions} ({permissions.length})
             </h4>
             {permissions.length > 0 ? (
               <div style={{ maxHeight: '150px', overflowY: 'auto', backgroundColor: '#252526', padding: '8px', borderRadius: '4px' }}>
@@ -144,24 +146,24 @@ export const PermissionDebugger: React.FC<PermissionDebuggerProps> = ({
                 ))}
               </div>
             ) : (
-              <div style={{ color: '#ce9178' }}>No permissions</div>
+              <div style={{ color: '#ce9178' }}>{t.noPermissions}</div>
             )}
           </div>
 
           <div>
             <h4 style={{ margin: '0 0 8px 0', fontSize: '13px', color: '#569cd6' }}>
-              Test Permission
+              {t.testPermission}
             </h4>
             <input
               type="text"
               value={testPermission}
               onChange={(e) => setTestPermission(e.target.value)}
-              placeholder="e.g., admin.delete"
+              placeholder={t.permissionPlaceholder}
               style={inputStyle}
               onKeyPress={(e) => e.key === 'Enter' && handleTestPermission()}
             />
             <button onClick={handleTestPermission} style={buttonStyle}>
-              Test
+              {t.test}
             </button>
             {testResult !== null && (
               <div
@@ -174,7 +176,7 @@ export const PermissionDebugger: React.FC<PermissionDebuggerProps> = ({
                   fontWeight: 'bold',
                 }}
               >
-                {testResult ? '✓ Access Granted' : '✗ Access Denied'}
+                {testResult ? t.accessGranted : t.accessDenied}
               </div>
             )}
           </div>

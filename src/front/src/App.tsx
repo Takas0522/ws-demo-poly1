@@ -2,7 +2,9 @@ import React from 'react';
 import { PermissionProvider } from './contexts/PermissionContext';
 import { AuthorizedComponent } from './components/AuthorizedComponent';
 import { PermissionDebugger } from './components/PermissionDebugger';
+import { LanguageSwitcher } from './components/LanguageSwitcher';
 import { useAuthorization } from './hooks/useAuthorization';
+import { useI18n } from './i18n/I18nContext';
 import { User } from './types/permission';
 
 /**
@@ -10,33 +12,34 @@ import { User } from './types/permission';
  */
 const DemoContent: React.FC = () => {
   const { hasPermission, user, checkAndExecute } = useAuthorization();
+  const { t } = useI18n();
 
   const handleDelete = checkAndExecute(
     'admin.delete',
-    () => alert('Item deleted!'),
-    () => alert('You do not have permission to delete')
+    () => alert(t.itemDeleted),
+    () => alert(t.noDeletePermission)
   );
 
   const handleEdit = checkAndExecute(
     'editor.edit',
-    () => alert('Editing item...'),
-    () => alert('You do not have permission to edit')
+    () => alert(t.editingItem),
+    () => alert(t.noEditPermission)
   );
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>Authorization Demo</h1>
+      <h1>{t.authorizationDemo}</h1>
       
       <div style={{ marginBottom: '20px', padding: '15px', backgroundColor: '#f0f0f0', borderRadius: '8px' }}>
-        <h3>Current User: {user?.username || 'Not logged in'}</h3>
-        <p>Permissions: {user?.permissions.length || 0}</p>
+        <h3>{t.currentUser}: {user?.username || t.notLoggedIn}</h3>
+        <p>{t.permissions}: {user?.permissions.length || 0}</p>
       </div>
 
       <div style={{ marginBottom: '30px' }}>
-        <h2>Button-Level Authorization Examples</h2>
+        <h2>{t.buttonLevelAuthExamples}</h2>
         
         <div style={{ marginBottom: '15px' }}>
-          <h3>1. Simple Permission Check</h3>
+          <h3>{t.simplePermissionCheck}</h3>
           <AuthorizedComponent permissions="admin.delete">
             <button
               onClick={handleDelete}
@@ -49,13 +52,13 @@ const DemoContent: React.FC = () => {
                 cursor: 'pointer',
               }}
             >
-              Delete (Admin Only)
+              {t.deleteAdminOnly}
             </button>
           </AuthorizedComponent>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
-          <h3>2. Multiple Permissions (Any One)</h3>
+          <h3>{t.multiplePermissionsAnyOne}</h3>
           <AuthorizedComponent permissions={['editor.edit', 'admin.edit']}>
             <button
               onClick={handleEdit}
@@ -68,17 +71,17 @@ const DemoContent: React.FC = () => {
                 cursor: 'pointer',
               }}
             >
-              Edit (Editor or Admin)
+              {t.editEditorOrAdmin}
             </button>
           </AuthorizedComponent>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
-          <h3>3. All Permissions Required</h3>
+          <h3>{t.allPermissionsRequired}</h3>
           <AuthorizedComponent
             permissions={['admin.view', 'admin.edit']}
             requireAll
-            fallback={<div style={{ color: '#888' }}>You need both view and edit permissions</div>}
+            fallback={<div style={{ color: '#888' }}>{t.needBothViewAndEdit}</div>}
           >
             <button
               style={{
@@ -90,13 +93,13 @@ const DemoContent: React.FC = () => {
                 cursor: 'pointer',
               }}
             >
-              Admin Panel (All Permissions)
+              {t.adminPanelAllPermissions}
             </button>
           </AuthorizedComponent>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
-          <h3>4. With Fallback Content</h3>
+          <h3>{t.withFallbackContent}</h3>
           <AuthorizedComponent
             permissions="premium.feature"
             fallback={
@@ -107,7 +110,7 @@ const DemoContent: React.FC = () => {
                   borderRadius: '4px',
                 }}
               >
-                🔒 Upgrade to Premium to access this feature
+                {t.upgradeToPremium}
               </div>
             }
           >
@@ -121,13 +124,13 @@ const DemoContent: React.FC = () => {
                 cursor: 'pointer',
               }}
             >
-              Premium Feature
+              {t.premiumFeature}
             </button>
           </AuthorizedComponent>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
-          <h3>5. Conditional Rendering with Hook</h3>
+          <h3>{t.conditionalRenderingWithHook}</h3>
           {hasPermission('user.view') && (
             <button
               style={{
@@ -139,17 +142,16 @@ const DemoContent: React.FC = () => {
                 cursor: 'pointer',
               }}
             >
-              View Users (Hook-based)
+              {t.viewUsersHookBased}
             </button>
           )}
         </div>
       </div>
 
       <div style={{ marginBottom: '20px' }}>
-        <h2>Permission Information</h2>
+        <h2>{t.permissionInformation}</h2>
         <p>
-          This demo shows different ways to implement button-level authorization.
-          Use the Permission Debugger (bottom-right) to test different scenarios.
+          {t.permissionInfoText}
         </p>
       </div>
     </div>
@@ -157,7 +159,7 @@ const DemoContent: React.FC = () => {
 };
 
 /**
- * Main App component with Permission Provider
+ * Main App component with Permission Provider and I18n Provider
  */
 const App: React.FC = () => {
   // Mock function to fetch user permissions
@@ -187,6 +189,7 @@ const App: React.FC = () => {
   return (
     <PermissionProvider fetchUserPermissions={fetchUserPermissions}>
       <DemoContent />
+      <LanguageSwitcher position="top-right" />
       {/* Permission Debugger - only show in development */}
       <PermissionDebugger position="bottom-right" defaultOpen={false} />
     </PermissionProvider>
