@@ -75,5 +75,3 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
     </div>
   );
 };
-
-export default LanguageSwitcher;

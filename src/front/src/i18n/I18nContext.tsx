@@ -15,10 +15,39 @@ interface I18nProviderProps {
 }
 
 /**
+ * Get saved language from localStorage safely
+ */
+const getSavedLanguage = (defaultLanguage: Language): Language => {
+  try {
+    const saved = localStorage.getItem('language');
+    if (saved === 'ja' || saved === 'en') {
+      return saved as Language;
+    }
+  } catch (error) {
+    // localStorage might be unavailable (privacy mode, SSR, etc.)
+    console.warn('Failed to read language from localStorage:', error);
+  }
+  return defaultLanguage;
+};
+
+/**
+ * Save language to localStorage safely
+ */
+const saveLanguage = (lang: Language): void => {
+  try {
+    localStorage.setItem('language', lang);
+  } catch (error) {
+    // localStorage might be unavailable
+    console.warn('Failed to save language to localStorage:', error);
+  }
+};
+
+/**
  * I18n Provider - Manages language and translations
  * 
  * Provides internationalization support for the application.
  * Defaults to Japanese (ja) as the primary language.
+ * Automatically restores user's previous language choice from localStorage.
  * 
  * @example
  * ```tsx
@@ -31,12 +60,13 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({
   children,
   defaultLanguage = 'ja', // Default to Japanese for Japanese speakers
 }) => {
-  const [language, setLanguageState] = useState<Language>(defaultLanguage);
+  const [language, setLanguageState] = useState<Language>(() => 
+    getSavedLanguage(defaultLanguage)
+  );
 
   const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
-    // Optionally save to localStorage
-    localStorage.setItem('language', lang);
+    saveLanguage(lang);
   }, []);
 
   const value: I18nContextValue = {
