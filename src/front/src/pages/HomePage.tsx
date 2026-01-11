@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>{t.authorizationDemo}</h1>
+      <h1>{t.welcome}</h1>
       <p style={{ fontSize: '18px', marginTop: '20px' }}>
         Welcome to the frontend application foundation. This application includes:
       </p>

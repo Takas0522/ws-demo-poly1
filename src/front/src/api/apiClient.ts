@@ -22,7 +22,8 @@ const apiClient: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, // Send cookies for CORS requests
+  // Note: withCredentials is not set globally for security
+  // Set it per-request when needed for authenticated endpoints
 });
 
 /**

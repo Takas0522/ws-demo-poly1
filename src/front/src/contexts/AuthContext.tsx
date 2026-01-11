@@ -47,6 +47,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     isAuthenticated: false,
     isLoading: true,
   });
+  const [hasInitialized, setHasInitialized] = useState(false);
 
   /**
    * Refresh user data from backend
@@ -123,10 +124,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
-  // Check authentication status on mount
+  // Check authentication status on mount only
   useEffect(() => {
-    refreshUser();
-  }, [refreshUser]);
+    if (!hasInitialized) {
+      setHasInitialized(true);
+      refreshUser();
+    }
+  }, [hasInitialized, refreshUser]);
 
   const value: AuthContextValue = {
     ...authState,

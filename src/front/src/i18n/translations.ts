@@ -26,6 +26,9 @@ export interface Translations {
   permissionInformation: string;
   permissionInfoText: string;
   
+  // Home page
+  welcome: string;
+  
   // Alerts
   itemDeleted: string;
   noDeletePermission: string;
@@ -76,6 +79,9 @@ export const translations: Record<Language, Translations> = {
     permissionInformation: 'Permission Information',
     permissionInfoText: 'This demo shows different ways to implement button-level authorization. Use the Permission Debugger (bottom-right) to test different scenarios.',
     
+    // Home page
+    welcome: 'Welcome',
+    
     // Alerts
     itemDeleted: 'Item deleted!',
     noDeletePermission: 'You do not have permission to delete',
@@ -123,6 +129,9 @@ export const translations: Record<Language, Translations> = {
     viewUsersHookBased: 'ユーザーを表示（フックベース）',
     permissionInformation: '権限情報',
     permissionInfoText: 'このデモでは、ボタンレベルの認可を実装するさまざまな方法を示しています。権限デバッガー（右下）を使用して、さまざまなシナリオをテストしてください。',
+    
+    // Home page
+    welcome: 'ようこそ',
     
     // Alerts
     itemDeleted: 'アイテムが削除されました！',
