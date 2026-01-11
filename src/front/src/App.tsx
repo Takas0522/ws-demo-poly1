@@ -9,6 +9,16 @@ import AboutPage from './pages/AboutPage';
 
 /**
  * Main App component with routing
+ * 
+ * Note: AuthProvider is available in src/contexts/AuthContext.tsx but not
+ * currently integrated. The PermissionProvider handles user permissions directly.
+ * When integrating with a real backend, wrap the app with AuthProvider:
+ * 
+ * <AuthProvider>
+ *   <PermissionProvider>
+ *     ...
+ *   </PermissionProvider>
+ * </AuthProvider>
  */
 const App: React.FC = () => {
   // Mock function to fetch user permissions

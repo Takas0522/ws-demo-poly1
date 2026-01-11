@@ -130,7 +130,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setHasInitialized(true);
       refreshUser();
     }
-  }, [hasInitialized, refreshUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasInitialized]);
 
   const value: AuthContextValue = {
     ...authState,
