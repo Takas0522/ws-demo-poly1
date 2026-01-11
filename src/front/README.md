@@ -1,6 +1,6 @@
 # Frontend Button-Level Authorization System
 
-This is a comprehensive React-based authorization system that provides button-level permission controls for frontend applications.
+This is a comprehensive React-based authorization system that provides button-level permission controls for frontend applications with full Japanese/English language support.
 
 ## 🎯 Features
 
@@ -13,6 +13,7 @@ This is a comprehensive React-based authorization system that provides button-le
 - ✅ Performance optimized with React hooks
 - ✅ Wildcard permission support
 - ✅ Multiple permission strategies (any/all)
+- ✅ **Japanese/English bilingual support (日本語・英語対応)**
 
 ## 📦 Installation
 
@@ -23,10 +24,12 @@ npm install
 
 ## 🚀 Usage
 
-### 1. Wrap your app with PermissionProvider
+### 1. Wrap your app with I18nProvider and PermissionProvider
 
 ```tsx
+import { I18nProvider } from './i18n/I18nContext';
 import { PermissionProvider } from './contexts/PermissionContext';
+import { LanguageSwitcher } from './components/LanguageSwitcher';
 
 const fetchUserPermissions = async () => {
   const response = await fetch('/api/user/permissions');
@@ -35,9 +38,12 @@ const fetchUserPermissions = async () => {
 
 function App() {
   return (
-    <PermissionProvider fetchUserPermissions={fetchUserPermissions}>
-      <YourApp />
-    </PermissionProvider>
+    <I18nProvider defaultLanguage="ja">
+      <PermissionProvider fetchUserPermissions={fetchUserPermissions}>
+        <YourApp />
+        <LanguageSwitcher position="top-right" />
+      </PermissionProvider>
+    </I18nProvider>
   );
 }
 ```
@@ -97,7 +103,27 @@ function MyComponent() {
 }
 ```
 
-### 4. Use Permission Debugger (Development)
+### 4. Use translations in your components
+
+```tsx
+import { useI18n } from './i18n/I18nContext';
+
+function MyComponent() {
+  const { t, language, setLanguage } = useI18n();
+  
+  return (
+    <div>
+      <h1>{t.authorizationDemo}</h1>
+      {/* 日本語: 認可デモ / English: Authorization Demo */}
+      <button onClick={() => setLanguage(language === 'ja' ? 'en' : 'ja')}>
+        Switch Language
+      </button>
+    </div>
+  );
+}
+```
+
+### 5. Use Permission Debugger (Development)
 
 ```tsx
 import { PermissionDebugger } from './components/PermissionDebugger';
@@ -107,6 +133,17 @@ import { PermissionDebugger } from './components/PermissionDebugger';
 )}
 ```
 
+## 🌐 Internationalization
+
+The system supports Japanese and English languages:
+
+- **Default**: Japanese (日本語)
+- **Supported**: English, Japanese
+- **Switcher**: `<LanguageSwitcher />` component
+- **Hook**: `useI18n()` for programmatic access
+
+See [I18N.md](./I18N.md) for detailed internationalization documentation.
+
 ## 🏗️ Architecture
 
 ### Core Components
@@ -114,8 +151,11 @@ import { PermissionDebugger } from './components/PermissionDebugger';
 1. **PermissionProvider** - Context provider that manages permission state
 2. **AuthorizedComponent** - Wrapper component for declarative authorization
 3. **PermissionDebugger** - Development tool for debugging permissions
-4. **useAuthorization** - Hook for programmatic permission checks
-5. **usePermissions** - Low-level hook for accessing permission context
+4. **I18nProvider** - Internationalization context provider
+5. **LanguageSwitcher** - Component for language switching
+6. **useAuthorization** - Hook for programmatic permission checks
+7. **usePermissions** - Low-level hook for accessing permission context
+8. **useI18n** - Hook for accessing translations
 
 ### Type System
 
