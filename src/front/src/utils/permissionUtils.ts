@@ -11,6 +11,7 @@ import { Permission } from '../types/permission';
  * matchPermission('admin.*', 'admin.delete') // true
  * matchPermission('admin.delete', 'admin.delete') // true
  * matchPermission('admin.*', 'user.view') // false
+ * matchPermission('admin.*', 'admin.users.delete') // true
  */
 export const matchPermission = (pattern: string, permission: string): boolean => {
   if (pattern === permission) return true;
@@ -19,13 +20,21 @@ export const matchPermission = (pattern: string, permission: string): boolean =>
   const patternParts = pattern.split('.');
   const permissionParts = permission.split('.');
 
-  if (patternParts.length !== permissionParts.length) {
-    // Check if pattern ends with wildcard
-    if (patternParts[patternParts.length - 1] === '*') {
-      const prefixParts = patternParts.slice(0, -1);
-      const permissionPrefix = permissionParts.slice(0, prefixParts.length);
-      return prefixParts.every((part, i) => part === permissionPrefix[i] || part === '*');
+  // Check if pattern ends with wildcard
+  if (patternParts[patternParts.length - 1] === '*') {
+    const prefixParts = patternParts.slice(0, -1);
+    
+    // Permission must have at least as many parts as the prefix
+    if (permissionParts.length < prefixParts.length) {
+      return false;
     }
+    
+    // Check if all prefix parts match
+    return prefixParts.every((part, i) => part === permissionParts[i] || part === '*');
+  }
+
+  // If no wildcard at the end, lengths must match exactly
+  if (patternParts.length !== permissionParts.length) {
     return false;
   }
 

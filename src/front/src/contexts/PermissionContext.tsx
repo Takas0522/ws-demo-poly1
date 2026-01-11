@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { User, Permission, PermissionContextValue, PermissionCheckOptions } from '../types/permission';
+import { hasPermissionWithWildcard } from '../utils/permissionUtils';
 
 const PermissionContext = createContext<PermissionContextValue | undefined>(undefined);
 
@@ -68,9 +69,9 @@ export const PermissionProvider: React.FC<PermissionProviderProps> = ({
       const requireAll = options?.requireAll ?? false;
 
       if (requireAll) {
-        return permissionArray.every((perm) => permissions.includes(perm));
+        return permissionArray.every((perm) => hasPermissionWithWildcard(permissions, perm));
       } else {
-        return permissionArray.some((perm) => permissions.includes(perm));
+        return permissionArray.some((perm) => hasPermissionWithWildcard(permissions, perm));
       }
     },
     [user]
