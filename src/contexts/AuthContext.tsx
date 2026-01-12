@@ -154,6 +154,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   /**
    * Switch to a different tenant
+   * 
+   * Note: Currently reloads the page to ensure all permissions are refreshed.
+   * In a production environment, consider refreshing permissions without reload
+   * or implement a more granular permission update mechanism.
    */
   const switchTenant = useCallback(async (tenantId: string) => {
     setAuthState(prev => ({ ...prev, isLoading: true }));
@@ -172,6 +176,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }));
       
       // Reload page to refresh permissions
+      // TODO: Consider implementing permission refresh without full page reload
       window.location.reload();
     } catch (error) {
       console.error('Failed to switch tenant:', error);

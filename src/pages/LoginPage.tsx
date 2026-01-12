@@ -140,12 +140,9 @@ const LoginPage: React.FC = () => {
 
           {/* Footer Links */}
           <div className="mt-6 text-center">
-            <a
-              href="#"
-              className="text-sm text-primary-600 hover:text-primary-700 transition-colors"
-            >
-              パスワードをお忘れですか？
-            </a>
+            <p className="text-sm text-gray-500">
+              パスワードをお忘れの場合は、管理者にお問い合わせください
+            </p>
           </div>
         </div>
 
