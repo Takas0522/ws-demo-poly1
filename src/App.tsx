@@ -9,6 +9,9 @@ import DemoPage from './pages/DemoPage';
 import AboutPage from './pages/AboutPage';
 import ComponentShowcase from './pages/ComponentShowcase';
 import LoginPage from './pages/LoginPage';
+import TenantListPage from './pages/TenantListPage';
+import TenantDetailPage from './pages/TenantDetailPage';
+import TenantCreatePage from './pages/TenantCreatePage';
 
 /**
  * Main App component with routing
@@ -33,6 +36,7 @@ const App: React.FC = () => {
         'user.edit',
         'editor.edit',
         'admin.view',
+        'global.admin', // Add global admin permission for tenant management
         // Uncomment to test different permission levels:
         // 'admin.edit',
         // 'admin.delete',
@@ -64,6 +68,9 @@ const App: React.FC = () => {
               <Route path="demo" element={<DemoPage />} />
               <Route path="about" element={<AboutPage />} />
               <Route path="components" element={<ComponentShowcase />} />
+              <Route path="admin/tenants" element={<TenantListPage />} />
+              <Route path="admin/tenants/new" element={<TenantCreatePage />} />
+              <Route path="admin/tenants/:id" element={<TenantDetailPage />} />
             </Route>
           </Routes>
         </PermissionProvider>

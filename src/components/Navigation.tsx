@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useI18n } from '../i18n/I18nContext';
 import { useAppStore } from '../store/appStore';
+import { useAuthorization } from '../hooks/useAuthorization';
 
 /**
  * Navigation component with routing links
@@ -10,11 +11,13 @@ const Navigation: React.FC = () => {
   const { language } = useI18n();
   const location = useLocation();
   const { sidebarOpen } = useAppStore();
+  const { hasAccess } = useAuthorization();
 
   const navItems = [
     { path: '/', label: language === 'ja' ? 'ホーム' : 'Home' },
     { path: '/demo', label: language === 'ja' ? 'デモ' : 'Demo' },
     { path: '/components', label: language === 'ja' ? 'コンポーネント' : 'Components' },
+    { path: '/admin/tenants', label: language === 'ja' ? 'テナント管理' : 'Tenant Management', permission: 'global.admin' },
     { path: '/about', label: language === 'ja' ? 'このアプリについて' : 'About' },
   ];
 
@@ -23,6 +26,11 @@ const Navigation: React.FC = () => {
   return (
     <nav className="flex flex-col gap-2.5 mt-5">
       {navItems.map((item) => {
+        // Check permission if required
+        if (item.permission && !hasAccess(item.permission)) {
+          return null;
+        }
+        
         const isActive = location.pathname === item.path;
         return (
           <Link
