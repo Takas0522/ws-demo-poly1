@@ -1,10 +1,36 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: "0.0.0.0",
     port: 3000,
+    proxy: {
+      // Auth Service - 認証サービス
+      "/api/auth": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+        secure: false,
+      },
+      // User Management Service - ユーザー管理サービス
+      "/api/users": {
+        target: "http://localhost:3002",
+        changeOrigin: true,
+        secure: false,
+      },
+      // Service Settings Service - サービス設定サービス
+      "/api/settings": {
+        target: "http://localhost:3003",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/api/configurations": {
+        target: "http://localhost:3003",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });
