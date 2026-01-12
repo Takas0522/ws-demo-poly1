@@ -54,6 +54,64 @@ export interface Translations {
   accessGranted: string;
   accessDenied: string;
   permissionPlaceholder: string;
+  
+  // Tenant Management
+  tenantManagement: string;
+  tenantName: string;
+  tenantDetails: string;
+  createTenant: string;
+  searchTenants: string;
+  filterByStatus: string;
+  filterByPlan: string;
+  allStatuses: string;
+  allPlans: string;
+  status: string;
+  active: string;
+  inactive: string;
+  suspended: string;
+  plan: string;
+  free: string;
+  basic: string;
+  premium: string;
+  enterprise: string;
+  createdAt: string;
+  noTenantsFound: string;
+  previous: string;
+  next: string;
+  pageXofY: string;
+  back: string;
+  delete: string;
+  save: string;
+  saving: string;
+  cancel: string;
+  create: string;
+  creating: string;
+  confirm: string;
+  add: string;
+  remove: string;
+  assign: string;
+  basicInformation: string;
+  subscriptionManagement: string;
+  subscription: string;
+  startDate: string;
+  endDate: string;
+  optional: string;
+  allowedDomains: string;
+  enterDomain: string;
+  noDomains: string;
+  tenantAdmins: string;
+  assignAdmin: string;
+  noAdmins: string;
+  searchUsers: string;
+  confirmDelete: string;
+  confirmDeleteMessage: string;
+  tenantNameRequired: string;
+  startDateRequired: string;
+  endDateMustBeAfterStart: string;
+  invalidDomainFormat: string;
+  enterTenantName: string;
+  confirmCreateTenant: string;
+  confirmCreateMessage: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -107,6 +165,64 @@ export const translations: Record<Language, Translations> = {
     accessGranted: '✓ Access Granted',
     accessDenied: '✗ Access Denied',
     permissionPlaceholder: 'e.g., admin.delete',
+    
+    // Tenant Management
+    tenantManagement: 'Tenant Management',
+    tenantName: 'Tenant Name',
+    tenantDetails: 'Tenant Details',
+    createTenant: 'Create Tenant',
+    searchTenants: 'Search tenants...',
+    filterByStatus: 'Filter by status',
+    filterByPlan: 'Filter by plan',
+    allStatuses: 'All Statuses',
+    allPlans: 'All Plans',
+    status: 'Status',
+    active: 'Active',
+    inactive: 'Inactive',
+    suspended: 'Suspended',
+    plan: 'Plan',
+    free: 'Free',
+    basic: 'Basic',
+    premium: 'Premium',
+    enterprise: 'Enterprise',
+    createdAt: 'Created At',
+    noTenantsFound: 'No tenants found',
+    previous: 'Previous',
+    next: 'Next',
+    pageXofY: 'Page {{current}} of {{total}}',
+    back: 'Back',
+    delete: 'Delete',
+    save: 'Save',
+    saving: 'Saving...',
+    cancel: 'Cancel',
+    create: 'Create',
+    creating: 'Creating...',
+    confirm: 'Confirm',
+    add: 'Add',
+    remove: 'Remove',
+    assign: 'Assign',
+    basicInformation: 'Basic Information',
+    subscriptionManagement: 'Subscription Management',
+    subscription: 'Subscription',
+    startDate: 'Start Date',
+    endDate: 'End Date',
+    optional: 'Optional',
+    allowedDomains: 'Allowed Domains',
+    enterDomain: 'Enter domain (e.g., example.com)',
+    noDomains: 'No domains configured',
+    tenantAdmins: 'Tenant Administrators',
+    assignAdmin: 'Assign Admin',
+    noAdmins: 'No administrators assigned',
+    searchUsers: 'Search users...',
+    confirmDelete: 'Confirm Delete',
+    confirmDeleteMessage: 'Are you sure you want to delete this tenant? This action cannot be undone.',
+    tenantNameRequired: 'Tenant name is required',
+    startDateRequired: 'Start date is required',
+    endDateMustBeAfterStart: 'End date must be after start date',
+    invalidDomainFormat: 'Invalid domain format',
+    enterTenantName: 'Enter tenant name',
+    confirmCreateTenant: 'Confirm Tenant Creation',
+    confirmCreateMessage: 'Please review the tenant information before creating:',
   },
   ja: {
     // App.tsx
@@ -158,5 +274,63 @@ export const translations: Record<Language, Translations> = {
     accessGranted: '✓ アクセス許可',
     accessDenied: '✗ アクセス拒否',
     permissionPlaceholder: '例: admin.delete',
+    
+    // Tenant Management
+    tenantManagement: 'テナント管理',
+    tenantName: 'テナント名',
+    tenantDetails: 'テナント詳細',
+    createTenant: 'テナント作成',
+    searchTenants: 'テナントを検索...',
+    filterByStatus: 'ステータスでフィルター',
+    filterByPlan: 'プランでフィルター',
+    allStatuses: 'すべてのステータス',
+    allPlans: 'すべてのプラン',
+    status: 'ステータス',
+    active: '有効',
+    inactive: '無効',
+    suspended: '停止中',
+    plan: 'プラン',
+    free: '無料',
+    basic: 'ベーシック',
+    premium: 'プレミアム',
+    enterprise: 'エンタープライズ',
+    createdAt: '作成日',
+    noTenantsFound: 'テナントが見つかりません',
+    previous: '前へ',
+    next: '次へ',
+    pageXofY: '{{current}} / {{total}} ページ',
+    back: '戻る',
+    delete: '削除',
+    save: '保存',
+    saving: '保存中...',
+    cancel: 'キャンセル',
+    create: '作成',
+    creating: '作成中...',
+    confirm: '確認',
+    add: '追加',
+    remove: '削除',
+    assign: '割り当て',
+    basicInformation: '基本情報',
+    subscriptionManagement: 'サブスクリプション管理',
+    subscription: 'サブスクリプション',
+    startDate: '開始日',
+    endDate: '終了日',
+    optional: '任意',
+    allowedDomains: '許可ドメイン',
+    enterDomain: 'ドメインを入力 (例: example.com)',
+    noDomains: 'ドメインが設定されていません',
+    tenantAdmins: 'テナント管理者',
+    assignAdmin: '管理者を割り当て',
+    noAdmins: '管理者が割り当てられていません',
+    searchUsers: 'ユーザーを検索...',
+    confirmDelete: '削除の確認',
+    confirmDeleteMessage: 'このテナントを削除してもよろしいですか？この操作は元に戻せません。',
+    tenantNameRequired: 'テナント名は必須です',
+    startDateRequired: '開始日は必須です',
+    endDateMustBeAfterStart: '終了日は開始日より後でなければなりません',
+    invalidDomainFormat: 'ドメインの形式が無効です',
+    enterTenantName: 'テナント名を入力',
+    confirmCreateTenant: 'テナント作成の確認',
+    confirmCreateMessage: '作成前にテナント情報を確認してください:',
   },
 };

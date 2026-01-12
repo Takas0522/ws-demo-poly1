@@ -9,3 +9,4 @@ export { Breadcrumb } from './Breadcrumb';
 export { Dropdown } from './Dropdown';
 export { Alert } from './Alert';
 export { Spinner } from './Spinner';
+export { Select } from './Select';
