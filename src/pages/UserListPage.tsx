@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUsers, bulkDeleteUsers, bulkUpdateUserStatus } from '../api/userApi';
 import { UserListItem, UserType, UserStatus } from '../types/user';
-import { Table } from '../components/ui/Table';
+import { Table, TableSkeleton, EmptyState } from '../components/ui';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Select } from '../components/ui/Select';
-import { Spinner } from '../components/ui/Spinner';
 import { Alert } from '../components/ui/Alert';
 import { Badge } from '../components/ui/Badge';
 import { useI18n } from '../i18n/I18nContext';
 import { AuthorizedComponent } from '../components/AuthorizedComponent';
+import { useToast } from '../contexts/ToastContext';
 
 /**
  * User List Page
@@ -20,6 +20,7 @@ import { AuthorizedComponent } from '../components/AuthorizedComponent';
 const UserListPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useI18n();
+  const toast = useToast();
   
   const [users, setUsers] = useState<UserListItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -178,15 +179,17 @@ const UserListPage: React.FC = () => {
         await bulkDeleteUsers(selectedUsers);
         setSelectedUsers([]);
         loadUsers();
+        toast.success(`${selectedUsers.length} users deleted successfully`);
       } else if (['active', 'inactive', 'suspended'].includes(bulkAction)) {
         await bulkUpdateUserStatus(selectedUsers, bulkAction as UserStatus);
         setSelectedUsers([]);
         loadUsers();
+        toast.success(`${selectedUsers.length} users updated successfully`);
       }
       setBulkAction('');
     } catch (err) {
       console.error('Bulk operation failed:', err);
-      alert(t.bulkOperationFailed || 'Bulk operation failed');
+      toast.error(t.bulkOperationFailed || 'Bulk operation failed');
     }
   };
 
@@ -339,13 +342,23 @@ const UserListPage: React.FC = () => {
         )}
 
         {loading ? (
-          <div className="flex justify-center py-12">
-            <Spinner size="lg" />
-          </div>
+          <TableSkeleton rows={5} columns={7} />
         ) : users.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">
-            {t.noUsersFound || 'No users found'}
-          </div>
+          <EmptyState
+            title={t.noUsersFound || 'No users found'}
+            description={search || userTypeFilter || statusFilter
+              ? 'Try adjusting your filters to find what you\'re looking for'
+              : 'Get started by creating your first user'}
+            icon={
+              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            }
+            action={!search && !userTypeFilter && !statusFilter ? {
+              label: t.createUser || 'Create User',
+              onClick: () => navigate('/admin/users/new')
+            } : undefined}
+          />
         ) : (
           <>
             <div className="bg-white rounded-lg shadow">

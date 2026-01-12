@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { I18nProvider } from './i18n/I18nContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { ToastProvider } from './contexts/ToastContext';
 
 const rootElement = document.getElementById('root');
 
@@ -14,8 +16,12 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <I18nProvider defaultLanguage="ja">
-      <App />
-    </I18nProvider>
+    <ErrorBoundary>
+      <I18nProvider defaultLanguage="ja">
+        <ToastProvider>
+          <App />
+        </ToastProvider>
+      </I18nProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );

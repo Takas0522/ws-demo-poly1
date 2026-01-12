@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getTenants } from '../api/tenantApi';
 import { TenantListItem, TenantStatus, SubscriptionPlan } from '../types/tenant';
-import { Table } from '../components/ui/Table';
+import { Table, TableSkeleton, EmptyState } from '../components/ui';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Select } from '../components/ui/Select';
-import { Spinner } from '../components/ui/Spinner';
 import { Alert } from '../components/ui/Alert';
 import { useI18n } from '../i18n/I18nContext';
 import { AuthorizedComponent } from '../components/AuthorizedComponent';
+import { useToast } from '../contexts/ToastContext';
 
 /**
  * Tenant List Page
@@ -19,6 +19,7 @@ import { AuthorizedComponent } from '../components/AuthorizedComponent';
 const TenantListPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useI18n();
+  const toast = useToast();
   
   const [tenants, setTenants] = useState<TenantListItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -190,13 +191,23 @@ const TenantListPage: React.FC = () => {
         )}
 
         {loading ? (
-          <div className="flex justify-center py-12">
-            <Spinner size="lg" />
-          </div>
+          <TableSkeleton rows={5} columns={5} />
         ) : tenants.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">
-            {t.noTenantsFound}
-          </div>
+          <EmptyState
+            title={t.noTenantsFound}
+            description={search || statusFilter || planFilter
+              ? 'Try adjusting your filters to find what you\'re looking for'
+              : 'Get started by creating your first tenant'}
+            icon={
+              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            }
+            action={!search && !statusFilter && !planFilter ? {
+              label: t.createTenant,
+              onClick: () => navigate('/admin/tenants/new')
+            } : undefined}
+          />
         ) : (
           <>
             <div className="bg-white rounded-lg shadow">

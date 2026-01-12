@@ -11,7 +11,12 @@ import {
   Dropdown,
   Alert,
   Spinner,
+  TableSkeleton,
+  CardSkeleton,
+  FormSkeleton,
+  EmptyState,
 } from '../components/ui';
+import { useToast } from '../contexts/ToastContext';
 
 /**
  * Component showcase page demonstrating all UI components
@@ -19,6 +24,7 @@ import {
  */
 export const ComponentShowcase: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const toast = useToast();
 
   const tableData = [
     { id: 1, name: 'John Doe', role: 'Admin', status: 'Active' },
@@ -105,6 +111,71 @@ export const ComponentShowcase: React.FC = () => {
           <Alert variant="success">This is a success alert message.</Alert>
           <Alert variant="warning">This is a warning alert message.</Alert>
           <Alert variant="error">This is an error alert message.</Alert>
+        </div>
+      </section>
+
+      {/* Toast Notifications */}
+      <section>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Toast Notifications</h2>
+        <div className="flex flex-wrap gap-4">
+          <Button onClick={() => toast.success('Success! Operation completed successfully')}>
+            Show Success
+          </Button>
+          <Button onClick={() => toast.error('Error! Something went wrong')} variant="danger">
+            Show Error
+          </Button>
+          <Button onClick={() => toast.warning('Warning! Please check your input')} variant="secondary">
+            Show Warning
+          </Button>
+          <Button onClick={() => toast.info('Info: New updates available')} variant="ghost">
+            Show Info
+          </Button>
+        </div>
+      </section>
+
+      {/* Loading Skeletons */}
+      <section>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Loading Skeletons</h2>
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-lg font-semibold mb-2">Table Skeleton</h3>
+            <TableSkeleton rows={3} columns={4} />
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-2">Card Skeleton</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <CardSkeleton count={3} />
+            </div>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-2">Form Skeleton</h3>
+            <div className="max-w-md">
+              <FormSkeleton fields={4} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Empty States */}
+      <section>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Empty States</h2>
+        <div className="space-y-8">
+          <div className="border border-gray-200 rounded-lg">
+            <EmptyState
+              title="No items found"
+              description="You haven't created any items yet. Get started by clicking the button below."
+              action={{
+                label: 'Create Item',
+                onClick: () => toast.info('Create item clicked')
+              }}
+            />
+          </div>
+          <div className="border border-gray-200 rounded-lg">
+            <EmptyState
+              title="No results"
+              description="Try adjusting your search or filter to find what you're looking for."
+            />
+          </div>
         </div>
       </section>
 
