@@ -170,7 +170,6 @@ export interface Translations {
   primary: string;
   secondary: string;
   tenantInformation: string;
-  currentPermissions: string;
   removeTenant: string;
   saveChanges: string;
   pleaseSelectAtLeastOneRole: string;
@@ -440,7 +439,6 @@ export const translations: Record<Language, Translations> = {
     primary: 'Primary',
     secondary: 'Secondary',
     tenantInformation: 'Tenant Information',
-    currentPermissions: 'Current Permissions',
     removeTenant: 'Remove Tenant',
     saveChanges: 'Save Changes',
     pleaseSelectAtLeastOneRole: 'Please select at least one role',
@@ -708,7 +706,6 @@ export const translations: Record<Language, Translations> = {
     primary: 'プライマリ',
     secondary: 'セカンダリ',
     tenantInformation: 'テナント情報',
-    currentPermissions: '現在の権限',
     removeTenant: 'テナントを削除',
     saveChanges: '変更を保存',
     pleaseSelectAtLeastOneRole: '少なくとも1つのロールを選択してください',

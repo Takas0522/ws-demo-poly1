@@ -17,7 +17,18 @@ export const globalSearch = async (filters: SearchFilters): Promise<SearchRespon
     const response = await apiClient.get<SearchResponse>('/search', { 
       params: filters 
     });
-    return response.data;
+    
+    // Validate response structure
+    if (response.data && 
+        response.data.results && 
+        Array.isArray(response.data.results) &&
+        response.data.categories) {
+      return response.data;
+    } else {
+      // If structure is invalid, use client-side search
+      console.warn('Invalid search API response, using client-side search');
+      return performClientSideSearch(filters);
+    }
   } catch (error) {
     console.warn('API not available, using mock search');
     // Fallback to client-side search using existing APIs

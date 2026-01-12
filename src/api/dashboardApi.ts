@@ -17,7 +17,19 @@ export const getDashboardData = async (timeRange: TimeRange = '30d'): Promise<Da
     const response = await apiClient.get<DashboardData>('/dashboard', { 
       params: { timeRange } 
     });
-    return response.data;
+    
+    // Validate response structure
+    if (response.data && 
+        response.data.tenantStats && 
+        response.data.userStats && 
+        response.data.serviceUsage && 
+        response.data.recentActivity) {
+      return response.data;
+    } else {
+      // If structure is invalid, use mock data
+      console.warn('Invalid API response structure, using mock data');
+      return generateMockDashboardData();
+    }
   } catch (error) {
     console.warn('API not available, using mock dashboard data');
     // Return mock data
