@@ -206,7 +206,7 @@ const ServiceCatalogPage: React.FC = () => {
                     <p className="text-sm text-gray-700">
                       <span className="font-medium">{t.requiredPlan}:</span>{' '}
                       <span className="text-primary-600 font-semibold">
-                        {getPlanLabel(service.requiredPlan)}以上
+                        {getPlanLabel(service.requiredPlan)}{t.orHigher}
                       </span>
                     </p>
                   </div>
@@ -239,7 +239,7 @@ const ServiceCatalogPage: React.FC = () => {
 
               <div className="border-t border-gray-200 pt-4">
                 <p className="text-sm font-medium text-gray-700 mb-2">
-                  {t.requiredPlan}: <span className="text-primary-600">{getPlanLabel(selectedService.requiredPlan)}以上</span>
+                  {t.requiredPlan}: <span className="text-primary-600">{getPlanLabel(selectedService.requiredPlan)}{t.orHigher}</span>
                 </p>
               </div>
 
@@ -252,7 +252,7 @@ const ServiceCatalogPage: React.FC = () => {
                         <div className="flex items-center gap-2 mb-1">
                           <span className="font-medium text-gray-900">{feature.name}</span>
                           {feature.enabled && (
-                            <Badge variant="success" className="text-xs">有効</Badge>
+                            <Badge variant="success" className="text-xs">{t.enabled}</Badge>
                           )}
                         </div>
                         <p className="text-sm text-gray-600">{feature.description}</p>

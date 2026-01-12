@@ -83,16 +83,19 @@ const TenantServiceAssignmentPage: React.FC = () => {
   const canUseService = (service: Service): boolean => {
     if (!tenant) return false;
     
-    const planHierarchy: SubscriptionPlan[] = ['free', 'basic', 'premium', 'enterprise'];
-    const requiredPlanIndex = planHierarchy.indexOf(service.requiredPlan as SubscriptionPlan);
-    const tenantPlanIndex = planHierarchy.indexOf(tenant.subscription.plan);
+    // Define plan hierarchy including professional
+    const planHierarchy: Record<string, number> = {
+      'free': 0,
+      'basic': 1,
+      'professional': 2,
+      'premium': 3,
+      'enterprise': 4,
+    };
     
-    // Allow "professional" to be treated as between "basic" and "premium"
-    if (service.requiredPlan === 'professional') {
-      return tenantPlanIndex >= 1; // basic or higher
-    }
+    const tenantPlanLevel = planHierarchy[tenant.subscription.plan] || 0;
+    const requiredPlanLevel = planHierarchy[service.requiredPlan] || 0;
     
-    return tenantPlanIndex >= requiredPlanIndex;
+    return tenantPlanLevel >= requiredPlanLevel;
   };
 
   const handleServiceToggle = async (serviceId: string, enabled: boolean) => {
@@ -222,7 +225,7 @@ const TenantServiceAssignmentPage: React.FC = () => {
                     <p className="text-sm text-gray-700">
                       <span className="font-medium">{t.requiredPlan}:</span>{' '}
                       <span className={canUse ? 'text-green-600' : 'text-red-600'}>
-                        {getPlanLabel(service.requiredPlan)}以上
+                        {getPlanLabel(service.requiredPlan)}{t.orHigher}
                       </span>
                     </p>
                     {!canUse && (
@@ -259,7 +262,7 @@ const TenantServiceAssignmentPage: React.FC = () => {
                   {enabled && assignment?.assignedAt && (
                     <div className="mt-3 pt-3 border-t border-gray-200">
                       <p className="text-xs text-gray-500">
-                        Assigned: {new Date(assignment.assignedAt).toLocaleString()}
+                        {t.assigned} {new Date(assignment.assignedAt).toLocaleString()}
                       </p>
                     </div>
                   )}

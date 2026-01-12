@@ -227,6 +227,9 @@ export interface Translations {
   serviceUpdateFailed: string;
   selectTenantFirst: string;
   professional: string;
+  orHigher: string;
+  enabled: string;
+  assigned: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -453,6 +456,9 @@ export const translations: Record<Language, Translations> = {
     serviceUpdateFailed: 'Failed to update service',
     selectTenantFirst: 'Please select a tenant first',
     professional: 'Professional',
+    orHigher: ' or higher',
+    enabled: 'Enabled',
+    assigned: 'Assigned:',
   },
   ja: {
     // App.tsx
@@ -677,5 +683,8 @@ export const translations: Record<Language, Translations> = {
     serviceUpdateFailed: 'サービスの更新に失敗しました',
     selectTenantFirst: '最初にテナントを選択してください',
     professional: 'Professional',
+    orHigher: '以上',
+    enabled: '有効',
+    assigned: '割り当て日時:',
   },
 };
