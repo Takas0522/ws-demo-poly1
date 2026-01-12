@@ -142,7 +142,7 @@ export const clearFiltersByType = (type: FilterType): void => {
  * Generate a unique filter ID
  */
 function generateFilterId(): string {
-  return `filter_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  return `filter_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
 }
 
 /**
