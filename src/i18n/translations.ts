@@ -270,6 +270,21 @@ export interface Translations {
   tenantFilters: string;
   userFilters: string;
   serviceFilters: string;
+  
+  // Error Boundary
+  errorOccurred: string;
+  errorDescription: string;
+  retry: string;
+  goHome: string;
+  
+  // Toast
+  close: string;
+  
+  // Empty State
+  noData: string;
+  noDataDescription: string;
+  noUsersFound: string;
+  noServicesFound: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -539,6 +554,21 @@ export const translations: Record<Language, Translations> = {
     tenantFilters: 'Tenant Filters',
     userFilters: 'User Filters',
     serviceFilters: 'Service Filters',
+    
+    // Error Boundary
+    errorOccurred: 'An Error Occurred',
+    errorDescription: 'We apologize for the inconvenience. An unexpected error has occurred.',
+    retry: 'Retry',
+    goHome: 'Go Home',
+    
+    // Toast
+    close: 'Close',
+    
+    // Empty State
+    noData: 'No Data',
+    noDataDescription: 'There is no data to display at this time.',
+    noUsersFound: 'No users found',
+    noServicesFound: 'No services found',
   },
   ja: {
     // App.tsx
@@ -806,5 +836,20 @@ export const translations: Record<Language, Translations> = {
     tenantFilters: 'テナントフィルター',
     userFilters: 'ユーザーフィルター',
     serviceFilters: 'サービスフィルター',
+    
+    // Error Boundary
+    errorOccurred: 'エラーが発生しました',
+    errorDescription: '申し訳ございません。予期しないエラーが発生しました。',
+    retry: '再試行',
+    goHome: 'ホームに戻る',
+    
+    // Toast
+    close: '閉じる',
+    
+    // Empty State
+    noData: 'データがありません',
+    noDataDescription: '現在表示するデータがありません。',
+    noUsersFound: 'ユーザーが見つかりませんでした',
+    noServicesFound: 'サービスが見つかりませんでした',
   },
 };
