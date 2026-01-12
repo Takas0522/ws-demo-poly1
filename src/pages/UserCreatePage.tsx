@@ -82,7 +82,7 @@ const UserCreatePage: React.FC = () => {
       
       // Auto-suggest user type
       if (result.suggestedUserType && result.suggestedUserType !== formData.userType) {
-        setFormData(prev => ({ ...prev, userType: result.suggestedUserType! }));
+        setFormData(prev => ({ ...prev, userType: result.suggestedUserType }));
       }
     } catch (err) {
       // Fallback to local validation

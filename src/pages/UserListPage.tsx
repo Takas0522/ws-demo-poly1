@@ -377,7 +377,9 @@ const UserListPage: React.FC = () => {
                   {t.previous}
                 </Button>
                 <span className="text-sm text-gray-700">
-                  {t.pageXofY?.replace('{{current}}', String(page)).replace('{{total}}', String(totalPages))}
+                  {(t.pageXofY || 'Page {{current}} of {{total}}')
+                    .replace('{{current}}', String(page))
+                    .replace('{{total}}', String(totalPages))}
                 </span>
                 <Button
                   variant="secondary"

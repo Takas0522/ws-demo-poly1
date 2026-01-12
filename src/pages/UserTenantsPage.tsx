@@ -4,6 +4,7 @@ import { getUserById, assignUserToTenant, removeUserFromTenant, updateUserTenant
 import { getTenants } from '../api/tenantApi';
 import { UserDetail, TenantAssignmentInput } from '../types/user';
 import { TenantListItem } from '../types/tenant';
+import { Translations } from '../i18n/translations';
 import { Button } from '../components/ui/Button';
 import { Modal } from '../components/ui/Modal';
 import { Select } from '../components/ui/Select';
@@ -313,7 +314,7 @@ interface TenantRoleEditorProps {
   availableRoles: { value: string; label: string }[];
   onUpdate: () => void;
   onRemove: () => void;
-  t: any;
+  t: Translations;
 }
 
 const TenantRoleEditor: React.FC<TenantRoleEditorProps> = ({

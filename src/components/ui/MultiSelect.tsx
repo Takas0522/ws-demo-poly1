@@ -105,7 +105,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
                   <input
                     type="checkbox"
                     checked={value.includes(option.value)}
-                    onChange={() => {}} // Handled by div onClick
+                    readOnly
                     className="mr-2"
                   />
                   {option.label}
