@@ -16,6 +16,8 @@ import UserListPage from './pages/UserListPage';
 import UserCreatePage from './pages/UserCreatePage';
 import UserDetailPage from './pages/UserDetailPage';
 import UserTenantsPage from './pages/UserTenantsPage';
+import ServiceCatalogPage from './pages/ServiceCatalogPage';
+import TenantServiceAssignmentPage from './pages/TenantServiceAssignmentPage';
 
 /**
  * Main App component with routing
@@ -76,10 +78,12 @@ const App: React.FC = () => {
               <Route path="admin/tenants" element={<TenantListPage />} />
               <Route path="admin/tenants/new" element={<TenantCreatePage />} />
               <Route path="admin/tenants/:id" element={<TenantDetailPage />} />
+              <Route path="admin/tenants/:id/services" element={<TenantServiceAssignmentPage />} />
               <Route path="admin/users" element={<UserListPage />} />
               <Route path="admin/users/new" element={<UserCreatePage />} />
               <Route path="admin/users/:id" element={<UserDetailPage />} />
               <Route path="admin/users/:id/tenants" element={<UserTenantsPage />} />
+              <Route path="admin/services" element={<ServiceCatalogPage />} />
             </Route>
           </Routes>
         </PermissionProvider>

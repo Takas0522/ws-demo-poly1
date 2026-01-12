@@ -11,3 +11,4 @@ export { Alert } from './Alert';
 export { Spinner } from './Spinner';
 export { Select } from './Select';
 export { MultiSelect } from './MultiSelect';
+export { Toggle } from './Toggle';

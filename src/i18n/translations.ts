@@ -185,6 +185,51 @@ export interface Translations {
   apply: string;
   selectAll: string;
   bulkOperationFailed: string;
+  
+  // Service Management
+  serviceCatalog: string;
+  serviceManagement: string;
+  services: string;
+  serviceDetails: string;
+  category: string;
+  allCategories: string;
+  storage: string;
+  communication: string;
+  analytics: string;
+  security: string;
+  integration: string;
+  available: string;
+  beta: string;
+  comingSoon: string;
+  requiredPlan: string;
+  version: string;
+  features: string;
+  enabledFeatures: string;
+  viewDetails: string;
+  closeDetails: string;
+  searchServices: string;
+  noServicesFound: string;
+  tenantServiceAssignment: string;
+  serviceAssignment: string;
+  assignServices: string;
+  enableService: string;
+  disableService: string;
+  serviceEnabled: string;
+  serviceDisabled: string;
+  planRestriction: string;
+  upgradeRequired: string;
+  featureFlags: string;
+  toggleFeature: string;
+  featureName: string;
+  featureDescription: string;
+  professionalPlan: string;
+  serviceUpdatedSuccessfully: string;
+  serviceUpdateFailed: string;
+  selectTenantFirst: string;
+  professional: string;
+  orHigher: string;
+  enabled: string;
+  assigned: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -369,6 +414,51 @@ export const translations: Record<Language, Translations> = {
     apply: 'Apply',
     selectAll: 'Select All',
     bulkOperationFailed: 'Bulk operation failed',
+    
+    // Service Management
+    serviceCatalog: 'Service Catalog',
+    serviceManagement: 'Service Management',
+    services: 'Services',
+    serviceDetails: 'Service Details',
+    category: 'Category',
+    allCategories: 'All Categories',
+    storage: 'Storage',
+    communication: 'Communication',
+    analytics: 'Analytics',
+    security: 'Security',
+    integration: 'Integration',
+    available: 'Available',
+    beta: 'Beta',
+    comingSoon: 'Coming Soon',
+    requiredPlan: 'Required Plan',
+    version: 'Version',
+    features: 'Features',
+    enabledFeatures: 'Enabled Features',
+    viewDetails: 'View Details',
+    closeDetails: 'Close',
+    searchServices: 'Search services...',
+    noServicesFound: 'No services found',
+    tenantServiceAssignment: 'Tenant Service Assignment',
+    serviceAssignment: 'Service Assignment',
+    assignServices: 'Assign Services',
+    enableService: 'Enable Service',
+    disableService: 'Disable Service',
+    serviceEnabled: 'Service Enabled',
+    serviceDisabled: 'Service Disabled',
+    planRestriction: 'Plan Restriction',
+    upgradeRequired: 'Upgrade Required',
+    featureFlags: 'Feature Flags',
+    toggleFeature: 'Toggle Feature',
+    featureName: 'Feature Name',
+    featureDescription: 'Description',
+    professionalPlan: 'Professional',
+    serviceUpdatedSuccessfully: 'Service updated successfully',
+    serviceUpdateFailed: 'Failed to update service',
+    selectTenantFirst: 'Please select a tenant first',
+    professional: 'Professional',
+    orHigher: ' or higher',
+    enabled: 'Enabled',
+    assigned: 'Assigned:',
   },
   ja: {
     // App.tsx
@@ -551,5 +641,50 @@ export const translations: Record<Language, Translations> = {
     apply: '適用',
     selectAll: 'すべて選択',
     bulkOperationFailed: '一括操作に失敗しました',
+    
+    // Service Management
+    serviceCatalog: 'サービスカタログ',
+    serviceManagement: 'サービス管理',
+    services: 'サービス',
+    serviceDetails: 'サービス詳細',
+    category: 'カテゴリ',
+    allCategories: 'すべてのカテゴリ',
+    storage: 'ストレージ',
+    communication: 'コミュニケーション',
+    analytics: 'アナリティクス',
+    security: 'セキュリティ',
+    integration: '統合',
+    available: '利用可能',
+    beta: 'ベータ',
+    comingSoon: '近日公開',
+    requiredPlan: '必要プラン',
+    version: 'バージョン',
+    features: '機能',
+    enabledFeatures: '有効な機能',
+    viewDetails: '詳細を表示',
+    closeDetails: '閉じる',
+    searchServices: 'サービスを検索...',
+    noServicesFound: 'サービスが見つかりません',
+    tenantServiceAssignment: 'テナント別サービス割り当て',
+    serviceAssignment: 'サービス割り当て',
+    assignServices: 'サービスを割り当て',
+    enableService: 'サービスを有効化',
+    disableService: 'サービスを無効化',
+    serviceEnabled: 'サービスが有効化されました',
+    serviceDisabled: 'サービスが無効化されました',
+    planRestriction: 'プラン制限',
+    upgradeRequired: 'アップグレードが必要です',
+    featureFlags: '機能フラグ',
+    toggleFeature: '機能の切り替え',
+    featureName: '機能名',
+    featureDescription: '説明',
+    professionalPlan: 'Professional',
+    serviceUpdatedSuccessfully: 'サービスが正常に更新されました',
+    serviceUpdateFailed: 'サービスの更新に失敗しました',
+    selectTenantFirst: '最初にテナントを選択してください',
+    professional: 'Professional',
+    orHigher: '以上',
+    enabled: '有効',
+    assigned: '割り当て日時:',
   },
 };

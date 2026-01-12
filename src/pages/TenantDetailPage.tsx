@@ -242,6 +242,9 @@ const TenantDetailPage: React.FC = () => {
               <Button variant="secondary" onClick={() => navigate('/admin/tenants')}>
                 {t.back}
               </Button>
+              <Button onClick={() => navigate(`/admin/tenants/${id}/services`)}>
+                {t.serviceAssignment}
+              </Button>
               <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
                 {t.delete}
               </Button>

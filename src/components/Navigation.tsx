@@ -19,6 +19,7 @@ const Navigation: React.FC = () => {
     { path: '/components', label: language === 'ja' ? 'コンポーネント' : 'Components' },
     { path: '/admin/tenants', label: language === 'ja' ? 'テナント管理' : 'Tenant Management', permission: 'global.admin' },
     { path: '/admin/users', label: language === 'ja' ? 'ユーザー管理' : 'User Management', permission: 'user.manage' },
+    { path: '/admin/services', label: language === 'ja' ? 'サービスカタログ' : 'Service Catalog', permission: 'global.admin' },
     { path: '/about', label: language === 'ja' ? 'このアプリについて' : 'About' },
   ];
 
