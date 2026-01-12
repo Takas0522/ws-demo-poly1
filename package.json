@@ -4,9 +4,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "npm run build:permissions && tsc && vite build",
+    "build:permissions": "cd packages/react-permissions && npm run build",
     "preview": "vite preview",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test:permissions",
+    "test:permissions": "cd packages/react-permissions && npm test",
+    "test:permissions:watch": "cd packages/react-permissions && npm run test:watch",
+    "test:permissions:coverage": "cd packages/react-permissions && npm run test:coverage"
   },
   "keywords": [],
   "author": "",
