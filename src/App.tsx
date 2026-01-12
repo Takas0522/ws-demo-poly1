@@ -12,6 +12,10 @@ import LoginPage from './pages/LoginPage';
 import TenantListPage from './pages/TenantListPage';
 import TenantDetailPage from './pages/TenantDetailPage';
 import TenantCreatePage from './pages/TenantCreatePage';
+import UserListPage from './pages/UserListPage';
+import UserCreatePage from './pages/UserCreatePage';
+import UserDetailPage from './pages/UserDetailPage';
+import UserTenantsPage from './pages/UserTenantsPage';
 
 /**
  * Main App component with routing
@@ -34,6 +38,7 @@ const App: React.FC = () => {
       permissions: [
         'user.view',
         'user.edit',
+        'user.manage',
         'editor.edit',
         'admin.view',
         'global.admin', // Add global admin permission for tenant management
@@ -71,6 +76,10 @@ const App: React.FC = () => {
               <Route path="admin/tenants" element={<TenantListPage />} />
               <Route path="admin/tenants/new" element={<TenantCreatePage />} />
               <Route path="admin/tenants/:id" element={<TenantDetailPage />} />
+              <Route path="admin/users" element={<UserListPage />} />
+              <Route path="admin/users/new" element={<UserCreatePage />} />
+              <Route path="admin/users/:id" element={<UserDetailPage />} />
+              <Route path="admin/users/:id/tenants" element={<UserTenantsPage />} />
             </Route>
           </Routes>
         </PermissionProvider>

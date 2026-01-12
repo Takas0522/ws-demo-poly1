@@ -120,6 +120,71 @@ export interface Translations {
   failedToRemoveAdmin: string;
   failedToDeleteTenant: string;
   failedToCreateTenant: string;
+  
+  // User Management
+  userManagement: string;
+  createUser: string;
+  userDetails: string;
+  email: string;
+  password: string;
+  userType: string;
+  internal: string;
+  external: string;
+  allUserTypes: string;
+  tenants: string;
+  noTenants: string;
+  noUsersFound: string;
+  enterUsername: string;
+  enterEmail: string;
+  enterPassword: string;
+  passwordHelp: string;
+  usernameRequired: string;
+  emailRequired: string;
+  passwordRequired: string;
+  passwordTooShort: string;
+  invalidEmail: string;
+  validatingEmail: string;
+  emailDomainInternal: string;
+  emailDomainExternal: string;
+  primaryTenant: string;
+  selectTenant: string;
+  createUserFailed: string;
+  updateUserFailed: string;
+  deleteUserFailed: string;
+  userNotFound: string;
+  userUpdated: string;
+  deleteUser: string;
+  confirmDeleteUser: string;
+  updatedAt: string;
+  tenantAssignments: string;
+  noTenantAssignments: string;
+  manageTenants: string;
+  addTenant: string;
+  selectRoles: string;
+  pleaseSelectTenantAndRoles: string;
+  assignTenantFailed: string;
+  removeTenantFailed: string;
+  confirmRemoveTenant: string;
+  adding: string;
+  edit: string;
+  primary: string;
+  secondary: string;
+  tenantInformation: string;
+  currentPermissions: string;
+  removeTenant: string;
+  saveChanges: string;
+  pleaseSelectAtLeastOneRole: string;
+  rolesUpdated: string;
+  updateRolesFailed: string;
+  selected: string;
+  selectAction: string;
+  setActive: string;
+  setInactive: string;
+  setSuspended: string;
+  deleteSelected: string;
+  apply: string;
+  selectAll: string;
+  bulkOperationFailed: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -239,6 +304,71 @@ export const translations: Record<Language, Translations> = {
     failedToRemoveAdmin: 'Failed to remove admin. Please try again.',
     failedToDeleteTenant: 'Failed to delete tenant. Please try again.',
     failedToCreateTenant: 'Failed to create tenant. Please try again.',
+    
+    // User Management
+    userManagement: 'User Management',
+    createUser: 'Create User',
+    userDetails: 'User Details',
+    email: 'Email',
+    password: 'Password',
+    userType: 'User Type',
+    internal: 'Internal',
+    external: 'External',
+    allUserTypes: 'All User Types',
+    tenants: 'Tenants',
+    noTenants: 'No tenants',
+    noUsersFound: 'No users found',
+    enterUsername: 'Enter username',
+    enterEmail: 'Enter email',
+    enterPassword: 'Enter password',
+    passwordHelp: 'Minimum 8 characters',
+    usernameRequired: 'Username is required',
+    emailRequired: 'Email is required',
+    passwordRequired: 'Password is required',
+    passwordTooShort: 'Password must be at least 8 characters',
+    invalidEmail: 'Invalid email format',
+    validatingEmail: 'Validating email...',
+    emailDomainInternal: 'Email domain appears to be internal',
+    emailDomainExternal: 'Email domain appears to be external',
+    primaryTenant: 'Primary Tenant',
+    selectTenant: 'Select tenant...',
+    createUserFailed: 'Failed to create user',
+    updateUserFailed: 'Failed to update user',
+    deleteUserFailed: 'Failed to delete user',
+    userNotFound: 'User not found',
+    userUpdated: 'User updated successfully',
+    deleteUser: 'Delete User',
+    confirmDeleteUser: 'Are you sure you want to delete this user?',
+    updatedAt: 'Updated At',
+    tenantAssignments: 'Tenant Assignments',
+    noTenantAssignments: 'No tenant assignments',
+    manageTenants: 'Manage Tenants',
+    addTenant: 'Add Tenant',
+    selectRoles: 'Select Roles',
+    pleaseSelectTenantAndRoles: 'Please select a tenant and at least one role',
+    assignTenantFailed: 'Failed to assign tenant',
+    removeTenantFailed: 'Failed to remove tenant',
+    confirmRemoveTenant: 'Are you sure you want to remove this tenant assignment?',
+    adding: 'Adding...',
+    edit: 'Edit',
+    primary: 'Primary',
+    secondary: 'Secondary',
+    tenantInformation: 'Tenant Information',
+    currentPermissions: 'Current Permissions',
+    removeTenant: 'Remove Tenant',
+    saveChanges: 'Save Changes',
+    pleaseSelectAtLeastOneRole: 'Please select at least one role',
+    rolesUpdated: 'Roles updated successfully',
+    updateRolesFailed: 'Failed to update roles',
+    selected: 'selected',
+    selectAction: 'Select action...',
+    setActive: 'Set Active',
+    setInactive: 'Set Inactive',
+    setSuspended: 'Set Suspended',
+    deleteSelected: 'Delete',
+    apply: 'Apply',
+    selectAll: 'Select All',
+    bulkOperationFailed: 'Bulk operation failed',
   },
   ja: {
     // App.tsx
@@ -356,5 +486,70 @@ export const translations: Record<Language, Translations> = {
     failedToRemoveAdmin: '管理者の削除に失敗しました。もう一度お試しください。',
     failedToDeleteTenant: 'テナントの削除に失敗しました。もう一度お試しください。',
     failedToCreateTenant: 'テナントの作成に失敗しました。もう一度お試しください。',
+    
+    // User Management
+    userManagement: 'ユーザー管理',
+    createUser: 'ユーザー作成',
+    userDetails: 'ユーザー詳細',
+    email: 'メールアドレス',
+    password: 'パスワード',
+    userType: 'ユーザータイプ',
+    internal: '内部',
+    external: '外部',
+    allUserTypes: 'すべてのユーザータイプ',
+    tenants: 'テナント',
+    noTenants: 'テナントなし',
+    noUsersFound: 'ユーザーが見つかりません',
+    enterUsername: 'ユーザー名を入力',
+    enterEmail: 'メールアドレスを入力',
+    enterPassword: 'パスワードを入力',
+    passwordHelp: '最低8文字',
+    usernameRequired: 'ユーザー名は必須です',
+    emailRequired: 'メールアドレスは必須です',
+    passwordRequired: 'パスワードは必須です',
+    passwordTooShort: 'パスワードは8文字以上である必要があります',
+    invalidEmail: 'メールアドレスの形式が無効です',
+    validatingEmail: 'メールアドレスを検証中...',
+    emailDomainInternal: 'メールドメインは内部ドメインのようです',
+    emailDomainExternal: 'メールドメインは外部ドメインのようです',
+    primaryTenant: 'プライマリテナント',
+    selectTenant: 'テナントを選択...',
+    createUserFailed: 'ユーザーの作成に失敗しました',
+    updateUserFailed: 'ユーザーの更新に失敗しました',
+    deleteUserFailed: 'ユーザーの削除に失敗しました',
+    userNotFound: 'ユーザーが見つかりません',
+    userUpdated: 'ユーザーが正常に更新されました',
+    deleteUser: 'ユーザーを削除',
+    confirmDeleteUser: 'このユーザーを削除してもよろしいですか？',
+    updatedAt: '更新日',
+    tenantAssignments: 'テナント割り当て',
+    noTenantAssignments: 'テナント割り当てがありません',
+    manageTenants: 'テナント管理',
+    addTenant: 'テナント追加',
+    selectRoles: 'ロールを選択',
+    pleaseSelectTenantAndRoles: 'テナントと少なくとも1つのロールを選択してください',
+    assignTenantFailed: 'テナントの割り当てに失敗しました',
+    removeTenantFailed: 'テナントの削除に失敗しました',
+    confirmRemoveTenant: 'このテナント割り当てを削除してもよろしいですか？',
+    adding: '追加中...',
+    edit: '編集',
+    primary: 'プライマリ',
+    secondary: 'セカンダリ',
+    tenantInformation: 'テナント情報',
+    currentPermissions: '現在の権限',
+    removeTenant: 'テナントを削除',
+    saveChanges: '変更を保存',
+    pleaseSelectAtLeastOneRole: '少なくとも1つのロールを選択してください',
+    rolesUpdated: 'ロールが正常に更新されました',
+    updateRolesFailed: 'ロールの更新に失敗しました',
+    selected: '選択済み',
+    selectAction: 'アクションを選択...',
+    setActive: '有効にする',
+    setInactive: '無効にする',
+    setSuspended: '停止する',
+    deleteSelected: '削除',
+    apply: '適用',
+    selectAll: 'すべて選択',
+    bulkOperationFailed: '一括操作に失敗しました',
   },
 };
