@@ -14,6 +14,7 @@ import { Alert } from '../components/ui/Alert';
 import { Breadcrumb } from '../components/ui/Breadcrumb';
 import { useI18n } from '../i18n/I18nContext';
 import { AuthorizedComponent } from '../components/AuthorizedComponent';
+import { canUsePlan, getPlanLabel } from '../utils/planUtils';
 
 /**
  * Tenant Service Assignment Page
@@ -82,20 +83,7 @@ const TenantServiceAssignmentPage: React.FC = () => {
 
   const canUseService = (service: Service): boolean => {
     if (!tenant) return false;
-    
-    // Define plan hierarchy including professional
-    const planHierarchy: Record<string, number> = {
-      'free': 0,
-      'basic': 1,
-      'professional': 2,
-      'premium': 3,
-      'enterprise': 4,
-    };
-    
-    const tenantPlanLevel = planHierarchy[tenant.subscription.plan] || 0;
-    const requiredPlanLevel = planHierarchy[service.requiredPlan] || 0;
-    
-    return tenantPlanLevel >= requiredPlanLevel;
+    return canUsePlan(tenant.subscription.plan, service.requiredPlan);
   };
 
   const handleServiceToggle = async (serviceId: string, enabled: boolean) => {
@@ -128,21 +116,8 @@ const TenantServiceAssignmentPage: React.FC = () => {
     }
   };
 
-  const getPlanLabel = (plan: string) => {
-    switch (plan) {
-      case 'free':
-        return t.free;
-      case 'basic':
-        return t.basic;
-      case 'professional':
-        return t.professional;
-      case 'premium':
-        return t.premium;
-      case 'enterprise':
-        return t.enterprise;
-      default:
-        return plan;
-    }
+  const getPlanLabelText = (plan: string) => {
+    return getPlanLabel(plan, t);
   };
 
   if (loading) {
@@ -179,7 +154,7 @@ const TenantServiceAssignmentPage: React.FC = () => {
             <div>
               <h1 className="text-3xl font-bold text-gray-900">{t.tenantServiceAssignment}</h1>
               <p className="text-gray-600 mt-2">
-                {tenant.name} - {getPlanLabel(tenant.subscription.plan)} {t.plan}
+                {tenant.name} - {getPlanLabelText(tenant.subscription.plan)} {t.plan}
               </p>
             </div>
             <Button variant="secondary" onClick={() => navigate(`/admin/tenants/${id}`)}>
@@ -225,7 +200,7 @@ const TenantServiceAssignmentPage: React.FC = () => {
                     <p className="text-sm text-gray-700">
                       <span className="font-medium">{t.requiredPlan}:</span>{' '}
                       <span className={canUse ? 'text-green-600' : 'text-red-600'}>
-                        {getPlanLabel(service.requiredPlan)}{t.orHigher}
+                        {getPlanLabelText(service.requiredPlan)}{t.orHigher}
                       </span>
                     </p>
                     {!canUse && (

@@ -11,6 +11,7 @@ import { Alert } from '../components/ui/Alert';
 import { Button } from '../components/ui/Button';
 import { useI18n } from '../i18n/I18nContext';
 import { AuthorizedComponent } from '../components/AuthorizedComponent';
+import { getPlanLabel } from '../utils/planUtils';
 
 /**
  * Service Catalog Page
@@ -110,21 +111,8 @@ const ServiceCatalogPage: React.FC = () => {
     }
   };
 
-  const getPlanLabel = (plan: string) => {
-    switch (plan) {
-      case 'free':
-        return t.free;
-      case 'basic':
-        return t.basic;
-      case 'professional':
-        return t.professional;
-      case 'premium':
-        return t.premium;
-      case 'enterprise':
-        return t.enterprise;
-      default:
-        return plan;
-    }
+  const getPlanLabelText = (plan: string) => {
+    return getPlanLabel(plan, t);
   };
 
   return (
@@ -206,7 +194,7 @@ const ServiceCatalogPage: React.FC = () => {
                     <p className="text-sm text-gray-700">
                       <span className="font-medium">{t.requiredPlan}:</span>{' '}
                       <span className="text-primary-600 font-semibold">
-                        {getPlanLabel(service.requiredPlan)}{t.orHigher}
+                        {getPlanLabelText(service.requiredPlan)}{t.orHigher}
                       </span>
                     </p>
                   </div>
@@ -239,7 +227,7 @@ const ServiceCatalogPage: React.FC = () => {
 
               <div className="border-t border-gray-200 pt-4">
                 <p className="text-sm font-medium text-gray-700 mb-2">
-                  {t.requiredPlan}: <span className="text-primary-600">{getPlanLabel(selectedService.requiredPlan)}{t.orHigher}</span>
+                  {t.requiredPlan}: <span className="text-primary-600">{getPlanLabelText(selectedService.requiredPlan)}{t.orHigher}</span>
                 </p>
               </div>
 
