@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { getServices } from '../api/serviceApi';
 import { Service, ServiceCategory, ServiceStatus } from '../types/service';
-import { Card } from '../components/ui/Card';
+import { Card, CardSkeleton, EmptyState } from '../components/ui';
 import { Badge } from '../components/ui/Badge';
 import { Modal } from '../components/ui/Modal';
 import { Input } from '../components/ui/Input';
 import { Select } from '../components/ui/Select';
-import { Spinner } from '../components/ui/Spinner';
 import { Alert } from '../components/ui/Alert';
 import { Button } from '../components/ui/Button';
 import { useI18n } from '../i18n/I18nContext';
 import { AuthorizedComponent } from '../components/AuthorizedComponent';
 import { getPlanLabel } from '../utils/planUtils';
+import { useToast } from '../contexts/ToastContext';
 
 /**
  * Service Catalog Page
@@ -19,6 +19,7 @@ import { getPlanLabel } from '../utils/planUtils';
  */
 const ServiceCatalogPage: React.FC = () => {
   const { t } = useI18n();
+  const toast = useToast();
   
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
@@ -161,13 +162,21 @@ const ServiceCatalogPage: React.FC = () => {
         )}
 
         {loading ? (
-          <div className="flex justify-center py-12">
-            <Spinner size="lg" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <CardSkeleton count={6} />
           </div>
         ) : services.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">
-            {t.noServicesFound}
-          </div>
+          <EmptyState
+            title={t.noServicesFound}
+            description={search || categoryFilter || statusFilter
+              ? 'Try adjusting your filters to find what you\'re looking for'
+              : 'No services are currently available'}
+            icon={
+              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+            }
+          />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
