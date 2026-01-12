@@ -14,6 +14,7 @@ const Navigation: React.FC = () => {
   const navItems = [
     { path: '/', label: language === 'ja' ? 'ホーム' : 'Home' },
     { path: '/demo', label: language === 'ja' ? 'デモ' : 'Demo' },
+    { path: '/components', label: language === 'ja' ? 'コンポーネント' : 'Components' },
     { path: '/about', label: language === 'ja' ? 'このアプリについて' : 'About' },
   ];
 
