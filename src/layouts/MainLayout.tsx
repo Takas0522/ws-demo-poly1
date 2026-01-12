@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import { PermissionDebugger } from '../components/PermissionDebugger';
+import { TenantSelector } from '../components/TenantSelector';
 import { useAppStore } from '../store/appStore';
 import { useI18n } from '../i18n/I18nContext';
 
@@ -47,6 +48,8 @@ const MainLayout: React.FC = () => {
             ☰ {language === 'ja' ? 'メニュー' : 'Menu'}
           </button>
           <div className="flex-1" />
+          {/* Tenant Selector */}
+          <TenantSelector />
         </header>
 
         {/* Page content */}
