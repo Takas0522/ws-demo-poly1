@@ -9,6 +9,7 @@ import DemoPage from './pages/DemoPage';
 import AboutPage from './pages/AboutPage';
 import ComponentShowcase from './pages/ComponentShowcase';
 import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
 import TenantListPage from './pages/TenantListPage';
 import TenantDetailPage from './pages/TenantDetailPage';
 import TenantCreatePage from './pages/TenantCreatePage';
@@ -72,6 +73,7 @@ const App: React.FC = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<MainLayout />}>
               <Route index element={<HomePage />} />
+              <Route path="dashboard" element={<DashboardPage />} />
               <Route path="demo" element={<DemoPage />} />
               <Route path="about" element={<AboutPage />} />
               <Route path="components" element={<ComponentShowcase />} />

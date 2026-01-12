@@ -170,7 +170,6 @@ export interface Translations {
   primary: string;
   secondary: string;
   tenantInformation: string;
-  currentPermissions: string;
   removeTenant: string;
   saveChanges: string;
   pleaseSelectAtLeastOneRole: string;
@@ -230,6 +229,47 @@ export interface Translations {
   orHigher: string;
   enabled: string;
   assigned: string;
+  
+  // Dashboard
+  dashboard: string;
+  systemStatistics: string;
+  tenantStatistics: string;
+  userStatistics: string;
+  tenantsByPlan: string;
+  serviceUsage: string;
+  activityFeed: string;
+  noRecentActivity: string;
+  last7Days: string;
+  last30Days: string;
+  last90Days: string;
+  allTime: string;
+  performedBy: string;
+  
+  // Global Search
+  globalSearch: string;
+  searchPlaceholder: string;
+  searchKeywords: string;
+  noResultsFound: string;
+  searchResults: string;
+  navigateWithArrows: string;
+  
+  // Saved Filters
+  savedFilters: string;
+  selectFilter: string;
+  saveCurrentFilter: string;
+  manageFilters: string;
+  saveFilter: string;
+  filterName: string;
+  filterNamePlaceholder: string;
+  noSavedFilters: string;
+  filterNameRequired: string;
+  filterSaved: string;
+  filterDeleted: string;
+  deleteFilter: string;
+  applyFilter: string;
+  tenantFilters: string;
+  userFilters: string;
+  serviceFilters: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -399,7 +439,6 @@ export const translations: Record<Language, Translations> = {
     primary: 'Primary',
     secondary: 'Secondary',
     tenantInformation: 'Tenant Information',
-    currentPermissions: 'Current Permissions',
     removeTenant: 'Remove Tenant',
     saveChanges: 'Save Changes',
     pleaseSelectAtLeastOneRole: 'Please select at least one role',
@@ -459,6 +498,47 @@ export const translations: Record<Language, Translations> = {
     orHigher: ' or higher',
     enabled: 'Enabled',
     assigned: 'Assigned:',
+    
+    // Dashboard
+    dashboard: 'Dashboard',
+    systemStatistics: 'System Statistics',
+    tenantStatistics: 'Tenant Statistics',
+    userStatistics: 'User Statistics',
+    tenantsByPlan: 'Tenants by Plan',
+    serviceUsage: 'Service Usage',
+    activityFeed: 'Activity Feed',
+    noRecentActivity: 'No recent activity',
+    last7Days: 'Last 7 days',
+    last30Days: 'Last 30 days',
+    last90Days: 'Last 90 days',
+    allTime: 'All time',
+    performedBy: 'By',
+    
+    // Global Search
+    globalSearch: 'Global Search',
+    searchPlaceholder: 'Search... (Cmd+K or Ctrl+K)',
+    searchKeywords: 'Enter search keywords',
+    noResultsFound: 'No results found',
+    searchResults: 'results',
+    navigateWithArrows: 'Navigate with arrows, Enter to select, Esc to close',
+    
+    // Saved Filters
+    savedFilters: 'Saved Filters',
+    selectFilter: 'Select filter...',
+    saveCurrentFilter: 'Save Current Filter',
+    manageFilters: 'Manage Filters',
+    saveFilter: 'Save Filter',
+    filterName: 'Filter Name',
+    filterNamePlaceholder: 'e.g., Active Enterprise Tenants',
+    noSavedFilters: 'No saved filters',
+    filterNameRequired: 'Please enter a filter name',
+    filterSaved: 'Filter saved successfully',
+    filterDeleted: 'Filter deleted successfully',
+    deleteFilter: 'Delete Filter',
+    applyFilter: 'Apply Filter',
+    tenantFilters: 'Tenant Filters',
+    userFilters: 'User Filters',
+    serviceFilters: 'Service Filters',
   },
   ja: {
     // App.tsx
@@ -626,7 +706,6 @@ export const translations: Record<Language, Translations> = {
     primary: 'プライマリ',
     secondary: 'セカンダリ',
     tenantInformation: 'テナント情報',
-    currentPermissions: '現在の権限',
     removeTenant: 'テナントを削除',
     saveChanges: '変更を保存',
     pleaseSelectAtLeastOneRole: '少なくとも1つのロールを選択してください',
@@ -686,5 +765,46 @@ export const translations: Record<Language, Translations> = {
     orHigher: '以上',
     enabled: '有効',
     assigned: '割り当て日時:',
+    
+    // Dashboard
+    dashboard: 'ダッシュボード',
+    systemStatistics: 'システム統計',
+    tenantStatistics: 'テナント統計',
+    userStatistics: 'ユーザー統計',
+    tenantsByPlan: 'プラン別テナント',
+    serviceUsage: 'サービス使用状況',
+    activityFeed: 'アクティビティフィード',
+    noRecentActivity: '最近のアクティビティはありません',
+    last7Days: '過去7日',
+    last30Days: '過去30日',
+    last90Days: '過去90日',
+    allTime: 'すべての期間',
+    performedBy: '実行者',
+    
+    // Global Search
+    globalSearch: 'グローバル検索',
+    searchPlaceholder: '検索... (Cmd+K または Ctrl+K)',
+    searchKeywords: '検索キーワードを入力してください',
+    noResultsFound: '結果が見つかりませんでした',
+    searchResults: '件の結果',
+    navigateWithArrows: '矢印キーで移動、Enterで選択、Escで閉じる',
+    
+    // Saved Filters
+    savedFilters: '保存済みフィルター',
+    selectFilter: 'フィルターを選択...',
+    saveCurrentFilter: '現在のフィルターを保存',
+    manageFilters: 'フィルター管理',
+    saveFilter: 'フィルターを保存',
+    filterName: 'フィルター名',
+    filterNamePlaceholder: '例: アクティブなエンタープライズテナント',
+    noSavedFilters: '保存されたフィルターがありません',
+    filterNameRequired: 'フィルター名を入力してください',
+    filterSaved: 'フィルターが保存されました',
+    filterDeleted: 'フィルターが削除されました',
+    deleteFilter: 'フィルターを削除',
+    applyFilter: 'フィルターを適用',
+    tenantFilters: 'テナントフィルター',
+    userFilters: 'ユーザーフィルター',
+    serviceFilters: 'サービスフィルター',
   },
 };
