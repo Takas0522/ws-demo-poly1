@@ -152,7 +152,12 @@ const mockTenantServices: Record<string, TenantServiceAssignment[]> = {
 export const getServices = async (filters?: ServiceCatalogFilters): Promise<Service[]> => {
   try {
     const response = await apiClient.get<Service[]>('/services', { params: filters });
-    return response.data;
+    // Check if response data is an array
+    if (Array.isArray(response.data)) {
+      return response.data;
+    } else {
+      throw new Error('Invalid response format');
+    }
   } catch (error) {
     console.warn('API not available, using mock data');
     // Filter mock data
@@ -184,7 +189,12 @@ export const getServices = async (filters?: ServiceCatalogFilters): Promise<Serv
 export const getServiceById = async (id: string): Promise<Service | null> => {
   try {
     const response = await apiClient.get<Service>(`/services/${id}`);
-    return response.data;
+    // Check if response data is valid
+    if (response.data && typeof response.data === 'object') {
+      return response.data;
+    } else {
+      throw new Error('Invalid response format');
+    }
   } catch (error) {
     console.warn('API not available, using mock data');
     return mockServices.find(s => s.id === id) || null;
@@ -197,7 +207,12 @@ export const getServiceById = async (id: string): Promise<Service | null> => {
 export const getTenantServices = async (tenantId: string): Promise<TenantServiceConfig> => {
   try {
     const response = await apiClient.get<TenantServiceConfig>(`/tenants/${tenantId}/services`);
-    return response.data;
+    // Check if response data is valid
+    if (response.data && response.data.tenantId && Array.isArray(response.data.assignments)) {
+      return response.data;
+    } else {
+      throw new Error('Invalid response format');
+    }
   } catch (error) {
     console.warn('API not available, using mock data');
     return {
