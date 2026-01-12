@@ -4,7 +4,7 @@ import { createTenant } from '../api/tenantApi';
 import { TenantStatus, SubscriptionPlan } from '../types/tenant';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
-import { Dropdown } from '../components/ui/Dropdown';
+import { Select } from '../components/ui/Select';
 import { Alert } from '../components/ui/Alert';
 import { Modal } from '../components/ui/Modal';
 import { Card } from '../components/ui/Card';
@@ -23,7 +23,7 @@ const TenantCreatePage: React.FC = () => {
   const [name, setName] = useState('');
   const [status, setStatus] = useState<TenantStatus>('active');
   const [plan, setPlan] = useState<SubscriptionPlan>('free');
-  const [startDate, setStartDate] = useState(new Date().toISOString().split.T[0]);
+  const [startDate, setStartDate] = useState(new Date().toISOString().substring(0, 10));
   const [endDate, setEndDate] = useState('');
   const [allowedDomains, setAllowedDomains] = useState<string[]>([]);
   const [newDomain, setNewDomain] = useState('');
