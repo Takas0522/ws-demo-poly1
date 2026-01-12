@@ -6,6 +6,7 @@ import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import DemoPage from './pages/DemoPage';
 import AboutPage from './pages/AboutPage';
+import ComponentShowcase from './pages/ComponentShowcase';
 
 /**
  * Main App component with routing
@@ -53,6 +54,7 @@ const App: React.FC = () => {
             <Route index element={<HomePage />} />
             <Route path="demo" element={<DemoPage />} />
             <Route path="about" element={<AboutPage />} />
+            <Route path="components" element={<ComponentShowcase />} />
           </Route>
         </Routes>
       </PermissionProvider>

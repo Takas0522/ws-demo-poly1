@@ -8,12 +8,12 @@ const HomePage: React.FC = () => {
   const { t } = useI18n();
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>{t.welcome}</h1>
-      <p style={{ fontSize: '18px', marginTop: '20px' }}>
+    <div className="p-5">
+      <h1 className="text-3xl font-bold text-gray-900 mb-4">{t.welcome}</h1>
+      <p className="text-lg text-gray-700 mt-5">
         Welcome to the frontend application foundation. This application includes:
       </p>
-      <ul style={{ fontSize: '16px', marginTop: '10px', lineHeight: '2' }}>
+      <ul className="text-base mt-2.5 space-y-2 text-gray-700">
         <li>✅ React 18+ with TypeScript</li>
         <li>✅ Vite build tool</li>
         <li>✅ React Router for navigation</li>
@@ -22,6 +22,7 @@ const HomePage: React.FC = () => {
         <li>✅ Authentication context</li>
         <li>✅ Permission-based authorization</li>
         <li>✅ Internationalization (Japanese/English)</li>
+        <li>✅ Tailwind CSS design system</li>
       </ul>
     </div>
   );

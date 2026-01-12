@@ -13,88 +13,44 @@ const MainLayout: React.FC = () => {
   const { sidebarOpen, toggleSidebar } = useAppStore();
   const { language } = useI18n();
 
-  const layoutStyle: React.CSSProperties = {
-    display: 'flex',
-    minHeight: '100vh',
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-  };
-
-  const sidebarStyle: React.CSSProperties = {
-    width: sidebarOpen ? '250px' : '60px',
-    backgroundColor: '#f8f9fa',
-    borderRight: '1px solid #dee2e6',
-    padding: '20px',
-    transition: 'width 0.3s ease',
-    overflow: 'hidden',
-  };
-
-  const mainStyle: React.CSSProperties = {
-    flex: 1,
-    backgroundColor: '#fff',
-    position: 'relative',
-  };
-
-  const headerStyle: React.CSSProperties = {
-    padding: '15px 20px',
-    backgroundColor: '#fff',
-    borderBottom: '1px solid #dee2e6',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '20px',
-  };
-
-  const toggleButtonStyle: React.CSSProperties = {
-    padding: '8px 12px',
-    backgroundColor: '#007bff',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '14px',
-  };
-
-  const contentStyle: React.CSSProperties = {
-    padding: '0',
-  };
-
   return (
-    <div style={layoutStyle}>
+    <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside style={sidebarStyle}>
-        <div style={{ display: sidebarOpen ? 'block' : 'none' }}>
-          <h2 style={{ marginBottom: '20px', fontSize: '20px', color: '#333' }}>
-            {language === 'ja' ? 'フロントエンドアプリ' : 'Frontend App'}
-          </h2>
-          <Navigation />
-        </div>
+      <aside 
+        className={`${
+          sidebarOpen ? 'w-64' : 'w-16'
+        } bg-gray-50 border-r border-gray-200 p-5 transition-all duration-300 overflow-hidden`}
+      >
+        {sidebarOpen && (
+          <div>
+            <h2 className="mb-5 text-xl text-gray-800 font-semibold">
+              {language === 'ja' ? 'フロントエンドアプリ' : 'Frontend App'}
+            </h2>
+            <Navigation />
+          </div>
+        )}
         {!sidebarOpen && (
-          <div style={{ textAlign: 'center', fontSize: '24px' }}>
+          <div className="text-center text-2xl text-gray-600">
             ☰
           </div>
         )}
       </aside>
 
       {/* Main content */}
-      <main style={mainStyle}>
+      <main className="flex-1 bg-white relative">
         {/* Header */}
-        <header style={headerStyle}>
+        <header className="px-5 py-4 bg-white border-b border-gray-200 flex items-center gap-5">
           <button
             onClick={toggleSidebar}
-            style={toggleButtonStyle}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#0056b3';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#007bff';
-            }}
+            className="px-3 py-2 bg-primary-600 text-white border-none rounded text-sm cursor-pointer hover:bg-primary-700 transition-colors"
           >
             ☰ {language === 'ja' ? 'メニュー' : 'Menu'}
           </button>
-          <div style={{ flex: 1 }} />
+          <div className="flex-1" />
         </header>
 
         {/* Page content */}
-        <div style={contentStyle}>
+        <div>
           <Outlet />
         </div>
       </main>

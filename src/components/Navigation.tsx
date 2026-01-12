@@ -14,45 +14,25 @@ const Navigation: React.FC = () => {
   const navItems = [
     { path: '/', label: language === 'ja' ? 'ホーム' : 'Home' },
     { path: '/demo', label: language === 'ja' ? 'デモ' : 'Demo' },
+    { path: '/components', label: language === 'ja' ? 'コンポーネント' : 'Components' },
     { path: '/about', label: language === 'ja' ? 'このアプリについて' : 'About' },
   ];
 
-  const navStyle: React.CSSProperties = {
-    display: sidebarOpen ? 'flex' : 'none',
-    flexDirection: 'column',
-    gap: '10px',
-    marginTop: '20px',
-  };
-
-  const linkStyle = (isActive: boolean): React.CSSProperties => ({
-    padding: '12px 20px',
-    textDecoration: 'none',
-    color: isActive ? '#fff' : '#333',
-    backgroundColor: isActive ? '#007bff' : 'transparent',
-    borderRadius: '4px',
-    transition: 'all 0.2s',
-    fontWeight: isActive ? 'bold' : 'normal',
-  });
+  if (!sidebarOpen) return null;
 
   return (
-    <nav style={navStyle}>
+    <nav className="flex flex-col gap-2.5 mt-5">
       {navItems.map((item) => {
         const isActive = location.pathname === item.path;
         return (
           <Link
             key={item.path}
             to={item.path}
-            style={linkStyle(isActive)}
-            onMouseEnter={(e) => {
-              if (!isActive) {
-                e.currentTarget.style.backgroundColor = '#f0f0f0';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!isActive) {
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }
-            }}
+            className={`px-5 py-3 rounded transition-all no-underline ${
+              isActive
+                ? 'bg-primary-600 text-white font-bold'
+                : 'bg-transparent text-gray-800 hover:bg-gray-100'
+            }`}
           >
             {item.label}
           </Link>
