@@ -4,11 +4,20 @@
 
 export type Permission = string;
 
+export interface Tenant {
+  id: string;
+  name: string;
+  roles: string[];
+}
+
 export interface User {
   id: string;
   username: string;
+  email?: string;
+  userType?: 'internal' | 'external';
   roles: string[];
   permissions: Permission[];
+  tenants?: Tenant[];
 }
 
 export interface PermissionCheckOptions {
