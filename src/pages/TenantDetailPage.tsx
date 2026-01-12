@@ -145,14 +145,14 @@ const TenantDetailPage: React.FC = () => {
         allowedDomains,
       });
 
-      setSuccessMessage('Tenant updated successfully!');
+      setSuccessMessage(t.tenantUpdatedSuccessfully);
       
       // Reload tenant data
       const updatedTenant = await getTenantById(id);
       setTenant(updatedTenant);
     } catch (err) {
       console.error('Failed to update tenant:', err);
-      setError('Failed to update tenant. Please try again.');
+      setError(t.failedToUpdateTenant);
     } finally {
       setSaving(false);
     }
@@ -174,7 +174,7 @@ const TenantDetailPage: React.FC = () => {
 
     try {
       await assignTenantAdmin(id, selectedUserId);
-      setSuccessMessage('Admin assigned successfully!');
+      setSuccessMessage(t.adminAssignedSuccessfully);
       setShowAdminModal(false);
       setSelectedUserId('');
       
@@ -183,7 +183,7 @@ const TenantDetailPage: React.FC = () => {
       setTenant(updatedTenant);
     } catch (err) {
       console.error('Failed to assign admin:', err);
-      setError('Failed to assign admin. Please try again.');
+      setError(t.failedToAssignAdmin);
     }
   };
 
@@ -192,14 +192,14 @@ const TenantDetailPage: React.FC = () => {
 
     try {
       await removeTenantAdmin(id, userId);
-      setSuccessMessage('Admin removed successfully!');
+      setSuccessMessage(t.adminRemovedSuccessfully);
       
       // Reload tenant data
       const updatedTenant = await getTenantById(id);
       setTenant(updatedTenant);
     } catch (err) {
       console.error('Failed to remove admin:', err);
-      setError('Failed to remove admin. Please try again.');
+      setError(t.failedToRemoveAdmin);
     }
   };
 
@@ -211,7 +211,7 @@ const TenantDetailPage: React.FC = () => {
       navigate('/admin/tenants');
     } catch (err) {
       console.error('Failed to delete tenant:', err);
-      setError('Failed to delete tenant. Please try again.');
+      setError(t.failedToDeleteTenant);
       setShowDeleteModal(false);
     }
   };

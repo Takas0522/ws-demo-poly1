@@ -112,6 +112,14 @@ export interface Translations {
   enterTenantName: string;
   confirmCreateTenant: string;
   confirmCreateMessage: string;
+  tenantUpdatedSuccessfully: string;
+  adminAssignedSuccessfully: string;
+  adminRemovedSuccessfully: string;
+  failedToUpdateTenant: string;
+  failedToAssignAdmin: string;
+  failedToRemoveAdmin: string;
+  failedToDeleteTenant: string;
+  failedToCreateTenant: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -223,6 +231,14 @@ export const translations: Record<Language, Translations> = {
     enterTenantName: 'Enter tenant name',
     confirmCreateTenant: 'Confirm Tenant Creation',
     confirmCreateMessage: 'Please review the tenant information before creating:',
+    tenantUpdatedSuccessfully: 'Tenant updated successfully!',
+    adminAssignedSuccessfully: 'Admin assigned successfully!',
+    adminRemovedSuccessfully: 'Admin removed successfully!',
+    failedToUpdateTenant: 'Failed to update tenant. Please try again.',
+    failedToAssignAdmin: 'Failed to assign admin. Please try again.',
+    failedToRemoveAdmin: 'Failed to remove admin. Please try again.',
+    failedToDeleteTenant: 'Failed to delete tenant. Please try again.',
+    failedToCreateTenant: 'Failed to create tenant. Please try again.',
   },
   ja: {
     // App.tsx
@@ -332,5 +348,13 @@ export const translations: Record<Language, Translations> = {
     enterTenantName: 'テナント名を入力',
     confirmCreateTenant: 'テナント作成の確認',
     confirmCreateMessage: '作成前にテナント情報を確認してください:',
+    tenantUpdatedSuccessfully: 'テナントが正常に更新されました！',
+    adminAssignedSuccessfully: '管理者が正常に割り当てられました！',
+    adminRemovedSuccessfully: '管理者が正常に削除されました！',
+    failedToUpdateTenant: 'テナントの更新に失敗しました。もう一度お試しください。',
+    failedToAssignAdmin: '管理者の割り当てに失敗しました。もう一度お試しください。',
+    failedToRemoveAdmin: '管理者の削除に失敗しました。もう一度お試しください。',
+    failedToDeleteTenant: 'テナントの削除に失敗しました。もう一度お試しください。',
+    failedToCreateTenant: 'テナントの作成に失敗しました。もう一度お試しください。',
   },
 };

@@ -11,6 +11,7 @@ import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { useI18n } from '../i18n/I18nContext';
 import { AuthorizedComponent } from '../components/AuthorizedComponent';
+import { isValidDomain } from '../utils/validation';
 
 /**
  * Tenant Create Page
@@ -54,8 +55,8 @@ const TenantCreatePage: React.FC = () => {
 
   const handleAddDomain = () => {
     if (newDomain && !allowedDomains.includes(newDomain)) {
-      // Basic domain validation
-      if (!/^[a-zA-Z0-9][a-zA-Z0-9-_.]+\.[a-zA-Z]{2,}$/.test(newDomain)) {
+      // Validate domain format
+      if (!isValidDomain(newDomain)) {
         setErrors({ ...errors, domain: t.invalidDomainFormat });
         return;
       }
@@ -97,7 +98,7 @@ const TenantCreatePage: React.FC = () => {
       navigate(`/admin/tenants/${tenant.id}`);
     } catch (err) {
       console.error('Failed to create tenant:', err);
-      setError('Failed to create tenant. Please try again.');
+      setError(t.failedToCreateTenant);
       setShowConfirmModal(false);
     } finally {
       setCreating(false);
@@ -213,7 +214,12 @@ const TenantCreatePage: React.FC = () => {
                     }}
                     placeholder={t.enterDomain}
                     error={errors.domain}
-                    onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddDomain())}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleAddDomain();
+                      }
+                    }}
                   />
                   <Button type="button" onClick={handleAddDomain}>
                     {t.add}
