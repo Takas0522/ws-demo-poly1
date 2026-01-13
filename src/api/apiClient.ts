@@ -37,7 +37,7 @@ const apiClient: AxiosInstance = axios.create({
 });
 
 /**
- * Request interceptor - Add authentication token to requests
+ * Request interceptor - Add authentication token and tenant ID to requests
  */
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
@@ -46,6 +46,13 @@ apiClient.interceptors.request.use(
 
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    // Add tenant ID header for multi-tenant requests
+    // For development, use a default tenant ID if not set
+    const tenantId = localStorage.getItem("tenantId") || "dev-tenant";
+    if (config.headers) {
+      config.headers["X-Tenant-ID"] = tenantId;
     }
 
     // Log request in development

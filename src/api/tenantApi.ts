@@ -17,7 +17,7 @@ import {
  * Get paginated list of tenants
  */
 export const getTenants = async (params: TenantListParams = {}): Promise<TenantListResponse> => {
-  const response = await apiClient.get<TenantListResponse>('/tenants', { params });
+  const response = await apiClient.get<TenantListResponse>('/api/v1/tenants', { params });
   return response.data;
 };
 
@@ -58,7 +58,7 @@ export const getTenantById = async (id: string): Promise<TenantDetail> => {
  * Create new tenant
  */
 export const createTenant = async (data: TenantCreateInput): Promise<TenantDetail> => {
-  const response = await apiClient.post<TenantDetail>('/tenants', data);
+  const response = await apiClient.post<TenantDetail>('/api/v1/tenants', data);
   return response.data;
 };
 
@@ -66,7 +66,7 @@ export const createTenant = async (data: TenantCreateInput): Promise<TenantDetai
  * Update tenant
  */
 export const updateTenant = async (id: string, data: TenantUpdateInput): Promise<TenantDetail> => {
-  const response = await apiClient.put<TenantDetail>(`/tenants/${id}`, data);
+  const response = await apiClient.put<TenantDetail>(`/api/v1/tenants/${id}`, data);
   return response.data;
 };
 
@@ -74,14 +74,14 @@ export const updateTenant = async (id: string, data: TenantUpdateInput): Promise
  * Delete tenant
  */
 export const deleteTenant = async (id: string): Promise<void> => {
-  await apiClient.delete(`/tenants/${id}`);
+  await apiClient.delete(`/api/v1/tenants/${id}`);
 };
 
 /**
  * Assign admin to tenant
  */
 export const assignTenantAdmin = async (tenantId: string, userId: string): Promise<TenantDetail> => {
-  const response = await apiClient.post<TenantDetail>(`/tenants/${tenantId}/admins`, { userId });
+  const response = await apiClient.post<TenantDetail>(`/api/v1/tenants/${tenantId}/admins`, { userId });
   return response.data;
 };
 
@@ -89,7 +89,7 @@ export const assignTenantAdmin = async (tenantId: string, userId: string): Promi
  * Remove admin from tenant
  */
 export const removeTenantAdmin = async (tenantId: string, userId: string): Promise<TenantDetail> => {
-  const response = await apiClient.delete<TenantDetail>(`/tenants/${tenantId}/admins/${userId}`);
+  const response = await apiClient.delete<TenantDetail>(`/api/v1/tenants/${tenantId}/admins/${userId}`);
   return response.data;
 };
 
@@ -97,6 +97,6 @@ export const removeTenantAdmin = async (tenantId: string, userId: string): Promi
  * Get available users for admin assignment
  */
 export const getAvailableUsers = async (search?: string): Promise<UserListItem[]> => {
-  const response = await apiClient.get<UserListItem[]>('/users', { params: { search } });
+  const response = await apiClient.get<UserListItem[]>('/api/v1/users', { params: { search } });
   return response.data;
 };

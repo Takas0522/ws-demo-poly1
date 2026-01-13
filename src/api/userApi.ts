@@ -18,7 +18,7 @@ import {
  * Get paginated list of users
  */
 export const getUsers = async (params: UserListParams = {}): Promise<UserListResponse> => {
-  const response = await apiClient.get<UserListResponse>('/users', { params });
+  const response = await apiClient.get<UserListResponse>('/api/v1/users', { params });
   return response.data;
 };
 
@@ -26,7 +26,7 @@ export const getUsers = async (params: UserListParams = {}): Promise<UserListRes
  * Get user by ID
  */
 export const getUserById = async (id: string): Promise<UserDetail> => {
-  const response = await apiClient.get<UserDetail>(`/users/${id}`);
+  const response = await apiClient.get<UserDetail>(`/api/v1/users/${id}`);
   return response.data;
 };
 
@@ -34,7 +34,7 @@ export const getUserById = async (id: string): Promise<UserDetail> => {
  * Create new user
  */
 export const createUser = async (data: UserCreateInput): Promise<UserDetail> => {
-  const response = await apiClient.post<UserDetail>('/users', data);
+  const response = await apiClient.post<UserDetail>('/api/v1/users', data);
   return response.data;
 };
 
@@ -42,7 +42,7 @@ export const createUser = async (data: UserCreateInput): Promise<UserDetail> => 
  * Update user
  */
 export const updateUser = async (id: string, data: UserUpdateInput): Promise<UserDetail> => {
-  const response = await apiClient.put<UserDetail>(`/users/${id}`, data);
+  const response = await apiClient.put<UserDetail>(`/api/v1/users/${id}`, data);
   return response.data;
 };
 
@@ -50,7 +50,7 @@ export const updateUser = async (id: string, data: UserUpdateInput): Promise<Use
  * Delete user
  */
 export const deleteUser = async (id: string): Promise<void> => {
-  await apiClient.delete(`/users/${id}`);
+  await apiClient.delete(`/api/v1/users/${id}`);
 };
 
 /**
@@ -60,7 +60,7 @@ export const assignUserToTenant = async (
   userId: string,
   assignment: TenantAssignmentInput
 ): Promise<UserDetail> => {
-  const response = await apiClient.post<UserDetail>(`/users/${userId}/tenants`, assignment);
+  const response = await apiClient.post<UserDetail>(`/api/v1/users/${userId}/tenants`, assignment);
   return response.data;
 };
 
@@ -68,7 +68,7 @@ export const assignUserToTenant = async (
  * Remove user from tenant
  */
 export const removeUserFromTenant = async (userId: string, tenantId: string): Promise<UserDetail> => {
-  const response = await apiClient.delete<UserDetail>(`/users/${userId}/tenants/${tenantId}`);
+  const response = await apiClient.delete<UserDetail>(`/api/v1/users/${userId}/tenants/${tenantId}`);
   return response.data;
 };
 
@@ -81,7 +81,7 @@ export const updateUserTenantRoles = async (
   roles: string[],
   permissions?: string[]
 ): Promise<UserDetail> => {
-  const response = await apiClient.put<UserDetail>(`/users/${userId}/tenants/${tenantId}`, {
+  const response = await apiClient.put<UserDetail>(`/api/v1/users/${userId}/tenants/${tenantId}`, {
     roles,
     permissions,
   });
@@ -100,7 +100,7 @@ export const validateEmailDomain = async (email: string): Promise<EmailValidatio
  * Bulk delete users
  */
 export const bulkDeleteUsers = async (userIds: string[]): Promise<void> => {
-  await apiClient.post('/users/bulk-delete', { userIds });
+  await apiClient.post('/api/v1/users/bulk-delete', { userIds });
 };
 
 /**

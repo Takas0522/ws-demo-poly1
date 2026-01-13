@@ -15,18 +15,23 @@ export default defineConfig({
         secure: false,
       },
       // User Management Service - ユーザー管理サービス
-      "/api/users": {
+      "/api/v1/users": {
+        target: "http://localhost:3002",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/api/v1/tenants": {
         target: "http://localhost:3002",
         changeOrigin: true,
         secure: false,
       },
       // Service Settings Service - サービス設定サービス
-      "/api/settings": {
+      "/api/v1/services": {
         target: "http://localhost:3003",
         changeOrigin: true,
         secure: false,
       },
-      "/api/configurations": {
+      "/api/v1/configurations": {
         target: "http://localhost:3003",
         changeOrigin: true,
         secure: false,

@@ -151,7 +151,7 @@ const mockTenantServices: Record<string, TenantServiceAssignment[]> = {
  */
 export const getServices = async (filters?: ServiceCatalogFilters): Promise<Service[]> => {
   try {
-    const response = await apiClient.get<Service[]>('/services', { params: filters });
+    const response = await apiClient.get<Service[]>('/api/v1/services', { params: filters });
     // Check if response data is an array
     if (Array.isArray(response.data)) {
       return response.data;
@@ -188,7 +188,7 @@ export const getServices = async (filters?: ServiceCatalogFilters): Promise<Serv
  */
 export const getServiceById = async (id: string): Promise<Service | null> => {
   try {
-    const response = await apiClient.get<Service>(`/services/${id}`);
+    const response = await apiClient.get<Service>(`/api/v1/services/${id}`);
     // Check if response data is valid
     if (response.data && typeof response.data === 'object') {
       return response.data;
