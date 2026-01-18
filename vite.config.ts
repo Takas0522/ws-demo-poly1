@@ -15,6 +15,7 @@ export default defineConfig({
         secure: false,
       },
       // User Management Service - ユーザー管理サービス
+      // Note: このパターンは /api/v1/users と /api/tenants の両方をカバーする
       "/api/v1/users": {
         target: "http://localhost:3002",
         changeOrigin: true,
@@ -25,13 +26,23 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      "/api/tenants": {
+        target: "http://localhost:3002",
+        changeOrigin: true,
+        secure: false,
+      },
       // Service Settings Service - サービス設定サービス
-      "/api/v1/services": {
+      "/api/services": {
         target: "http://localhost:3003",
         changeOrigin: true,
         secure: false,
       },
-      "/api/v1/configurations": {
+      "/api/configurations": {
+        target: "http://localhost:3003",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/api/analytics": {
         target: "http://localhost:3003",
         changeOrigin: true,
         secure: false,

@@ -62,7 +62,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setAuthState(prev => ({ ...prev, isLoading: true }));
       
       // Call backend to get current user info with permissions
-      const response = await apiClient.get<User>('/auth/me');
+      const response = await apiClient.get<User>('/api/auth/me');
       
       // Extract tenants from user data
       const tenants = response.data.tenants || [];
@@ -95,7 +95,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setAuthState(prev => ({ ...prev, isLoading: true }));
       
       // Call backend login endpoint
-      const response = await apiClient.post<{ token: string; user: User }>('/auth/login', credentials);
+      const response = await apiClient.post<{ token: string; user: User }>('/api/auth/login', credentials);
       
       // Check if user is external type and reject
       if (response.data.user.userType === 'external') {
@@ -136,7 +136,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = useCallback(async () => {
     try {
       // Call backend logout endpoint
-      await apiClient.post('/auth/logout');
+      await apiClient.post('/api/auth/logout');
     } catch (error) {
       console.error('Logout request failed:', error);
     } finally {

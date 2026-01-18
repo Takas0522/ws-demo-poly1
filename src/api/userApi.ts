@@ -1,4 +1,4 @@
-import apiClient from './apiClient';
+import apiClient from "./apiClient";
 import {
   UserDetail,
   UserListResponse,
@@ -7,7 +7,7 @@ import {
   UserListParams,
   TenantAssignmentInput,
   EmailValidationResult,
-} from '../types/user';
+} from "../types/user";
 
 /**
  * User API Client
@@ -17,8 +17,12 @@ import {
 /**
  * Get paginated list of users
  */
-export const getUsers = async (params: UserListParams = {}): Promise<UserListResponse> => {
-  const response = await apiClient.get<UserListResponse>('/api/v1/users', { params });
+export const getUsers = async (
+  params: UserListParams = {}
+): Promise<UserListResponse> => {
+  const response = await apiClient.get<UserListResponse>("/api/v1/users", {
+    params,
+  });
   return response.data;
 };
 
@@ -33,15 +37,20 @@ export const getUserById = async (id: string): Promise<UserDetail> => {
 /**
  * Create new user
  */
-export const createUser = async (data: UserCreateInput): Promise<UserDetail> => {
-  const response = await apiClient.post<UserDetail>('/api/v1/users', data);
+export const createUser = async (
+  data: UserCreateInput
+): Promise<UserDetail> => {
+  const response = await apiClient.post<UserDetail>("/api/v1/users", data);
   return response.data;
 };
 
 /**
  * Update user
  */
-export const updateUser = async (id: string, data: UserUpdateInput): Promise<UserDetail> => {
+export const updateUser = async (
+  id: string,
+  data: UserUpdateInput
+): Promise<UserDetail> => {
   const response = await apiClient.put<UserDetail>(`/api/v1/users/${id}`, data);
   return response.data;
 };
@@ -60,15 +69,23 @@ export const assignUserToTenant = async (
   userId: string,
   assignment: TenantAssignmentInput
 ): Promise<UserDetail> => {
-  const response = await apiClient.post<UserDetail>(`/api/v1/users/${userId}/tenants`, assignment);
+  const response = await apiClient.post<UserDetail>(
+    `/api/v1/users/${userId}/tenants`,
+    assignment
+  );
   return response.data;
 };
 
 /**
  * Remove user from tenant
  */
-export const removeUserFromTenant = async (userId: string, tenantId: string): Promise<UserDetail> => {
-  const response = await apiClient.delete<UserDetail>(`/api/v1/users/${userId}/tenants/${tenantId}`);
+export const removeUserFromTenant = async (
+  userId: string,
+  tenantId: string
+): Promise<UserDetail> => {
+  const response = await apiClient.delete<UserDetail>(
+    `/api/v1/users/${userId}/tenants/${tenantId}`
+  );
   return response.data;
 };
 
@@ -81,18 +98,26 @@ export const updateUserTenantRoles = async (
   roles: string[],
   permissions?: string[]
 ): Promise<UserDetail> => {
-  const response = await apiClient.put<UserDetail>(`/api/v1/users/${userId}/tenants/${tenantId}`, {
-    roles,
-    permissions,
-  });
+  const response = await apiClient.put<UserDetail>(
+    `/api/v1/users/${userId}/tenants/${tenantId}`,
+    {
+      roles,
+      permissions,
+    }
+  );
   return response.data;
 };
 
 /**
  * Validate email domain
  */
-export const validateEmailDomain = async (email: string): Promise<EmailValidationResult> => {
-  const response = await apiClient.post<EmailValidationResult>('/users/validate-email', { email });
+export const validateEmailDomain = async (
+  email: string
+): Promise<EmailValidationResult> => {
+  const response = await apiClient.post<EmailValidationResult>(
+    "/users/validate-email",
+    { email }
+  );
   return response.data;
 };
 
@@ -100,7 +125,7 @@ export const validateEmailDomain = async (email: string): Promise<EmailValidatio
  * Bulk delete users
  */
 export const bulkDeleteUsers = async (userIds: string[]): Promise<void> => {
-  await apiClient.post('/api/v1/users/bulk-delete', { userIds });
+  await apiClient.post("/api/v1/users/bulk-delete", { userIds });
 };
 
 /**
@@ -108,7 +133,7 @@ export const bulkDeleteUsers = async (userIds: string[]): Promise<void> => {
  */
 export const bulkUpdateUserStatus = async (
   userIds: string[],
-  status: 'active' | 'inactive' | 'suspended'
+  status: "active" | "inactive" | "suspended"
 ): Promise<void> => {
-  await apiClient.post('/users/bulk-update-status', { userIds, status });
+  await apiClient.post("/users/bulk-update-status", { userIds, status });
 };
