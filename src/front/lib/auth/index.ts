@@ -1,2 +1,4 @@
 // Authentication utilities
-// Example: export const isAuthenticated = () => { /* implementation */ };
+export * from "./types";
+export * from "./authClient";
+export * from "./AuthContext";
