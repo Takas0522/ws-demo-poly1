@@ -108,7 +108,7 @@ src/front/
 ├── eslint.config.mjs    # ESLint configuration
 ├── next.config.ts       # Next.js configuration
 ├── tsconfig.json        # TypeScript configuration
-├── tailwind.config.ts   # Tailwind CSS configuration
+├── postcss.config.mjs   # PostCSS configuration
 └── package.json         # Project dependencies
 ```
 
