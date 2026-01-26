@@ -30,16 +30,9 @@ export default function LoginPage() {
       router.push("/dashboard");
     } catch (err: unknown) {
       // Handle authentication errors
-      if (
-        err &&
-        typeof err === "object" &&
-        "code" in err &&
-        typeof err.code === "string"
-      ) {
+      if (err && typeof err === "object" && "code" in err && typeof err.code === "string") {
         const errorCode = err.code;
-        setError(
-          AUTH_ERROR_MESSAGES[errorCode] || AUTH_ERROR_MESSAGES.AUTH002,
-        );
+        setError(AUTH_ERROR_MESSAGES[errorCode] || AUTH_ERROR_MESSAGES.AUTH002);
       } else {
         setError(AUTH_ERROR_MESSAGES.AUTH002);
       }

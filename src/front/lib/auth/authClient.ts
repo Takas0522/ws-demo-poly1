@@ -1,17 +1,13 @@
 // Authentication API client
 import type { LoginRequest, LoginResponse, User } from "./types";
 
-const AUTH_SERVICE_URL =
-  process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || "http://localhost:8001";
+const AUTH_SERVICE_URL = process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || "http://localhost:8001";
 
 export class AuthClient {
   /**
    * Login with credentials
    */
-  static async login(
-    loginId: string,
-    password: string,
-  ): Promise<LoginResponse> {
+  static async login(loginId: string, password: string): Promise<LoginResponse> {
     const response = await fetch(`${AUTH_SERVICE_URL}/api/auth/login`, {
       method: "POST",
       headers: {

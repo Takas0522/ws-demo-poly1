@@ -36,9 +36,7 @@ export default function DashboardPage() {
               Management Application
             </h1>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-zinc-600 dark:text-zinc-400">
-                {user?.name}
-              </span>
+              <span className="text-sm text-zinc-600 dark:text-zinc-400">{user?.name}</span>
               <button
                 onClick={handleLogout}
                 className="rounded-md bg-zinc-100 dark:bg-zinc-700 px-3 py-1.5 text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-600"
@@ -53,9 +51,7 @@ export default function DashboardPage() {
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-              ダッシュボード
-            </h2>
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">ダッシュボード</h2>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
               ようこそ、{user?.name}さん
             </p>
@@ -70,10 +66,7 @@ export default function DashboardPage() {
                 テナントの一覧表示・編集
               </p>
               <div className="mt-4">
-                <a
-                  href="#"
-                  className="text-sm font-medium text-blue-600 hover:text-blue-500"
-                >
+                <a href="#" className="text-sm font-medium text-blue-600 hover:text-blue-500">
                   詳細を見る →
                 </a>
               </div>
@@ -87,10 +80,7 @@ export default function DashboardPage() {
                 ユーザーの一覧表示・編集
               </p>
               <div className="mt-4">
-                <a
-                  href="#"
-                  className="text-sm font-medium text-blue-600 hover:text-blue-500"
-                >
+                <a href="#" className="text-sm font-medium text-blue-600 hover:text-blue-500">
                   詳細を見る →
                 </a>
               </div>
@@ -100,14 +90,9 @@ export default function DashboardPage() {
               <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                 サービス設定
               </h3>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                サービス割当の管理
-              </p>
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">サービス割当の管理</p>
               <div className="mt-4">
-                <a
-                  href="#"
-                  className="text-sm font-medium text-blue-600 hover:text-blue-500"
-                >
+                <a href="#" className="text-sm font-medium text-blue-600 hover:text-blue-500">
                   詳細を見る →
                 </a>
               </div>
@@ -129,9 +114,7 @@ export default function DashboardPage() {
                       <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
                         {tenant.name}
                       </p>
-                      <p className="text-xs text-zinc-600 dark:text-zinc-400">
-                        {tenant.id}
-                      </p>
+                      <p className="text-xs text-zinc-600 dark:text-zinc-400">{tenant.id}</p>
                     </div>
                     {tenant.isPrivileged && (
                       <span className="rounded-full bg-blue-100 dark:bg-blue-900 px-2 py-1 text-xs font-medium text-blue-800 dark:text-blue-200">
