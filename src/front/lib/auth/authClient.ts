@@ -1,5 +1,6 @@
 // Authentication API client
 import type { LoginRequest, LoginResponse, User } from "./types";
+import { AUTH_ERROR_MESSAGES } from "./types";
 
 const AUTH_SERVICE_URL = process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || "http://localhost:8001";
 
@@ -21,7 +22,7 @@ export class AuthClient {
       const error = await response.json().catch(() => ({
         error: {
           code: "AUTH002",
-          message: "ログインIDまたはパスワードが正しくありません",
+          message: AUTH_ERROR_MESSAGES.AUTH002,
         },
       }));
       throw error.error || error;

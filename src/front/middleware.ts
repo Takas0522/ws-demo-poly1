@@ -13,7 +13,11 @@ export function middleware(request: NextRequest) {
   }
 
   // Allow static files and Next.js internal routes
-  if (pathname.startsWith("/_next") || pathname.startsWith("/api") || pathname.includes(".")) {
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    /\.(ico|png|jpg|jpeg|svg|gif|webp|css|js|json|xml|txt|woff|woff2|ttf|eot)$/i.test(pathname)
+  ) {
     return NextResponse.next();
   }
 

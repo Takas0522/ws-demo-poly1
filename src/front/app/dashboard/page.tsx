@@ -15,8 +15,15 @@ export default function DashboardPage() {
   }, [isAuthenticated, isLoading, router]);
 
   const handleLogout = async () => {
-    await logout();
-    router.push("/login");
+    try {
+      await logout();
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+      // Still redirect to login page even if logout fails
+      // The server-side session may have already been cleared
+      router.push("/login");
+    }
   };
 
   if (isLoading || !isAuthenticated) {
