@@ -150,17 +150,20 @@ npm run build
 This frontend communicates with the following backend services:
 
 ### Auth Service (Port 8001)
+
 - `POST /api/auth/login` - User login
 - `POST /api/auth/verify` - Token verification
 - `POST /api/auth/refresh` - Token refresh
 
 ### User Management Service (Port 8002)
+
 - `GET /api/tenants` - List tenants
 - `POST /api/tenants` - Create tenant
 - `GET /api/tenants/{tenantId}/users` - List tenant users
 - `POST /api/tenants/{tenantId}/users` - Add user to tenant
 
 ### Service Setting Service (Port 8004)
+
 - `GET /api/services` - List available services
 - `GET /api/tenants/{tenantId}/services` - Get tenant services
 - `POST /api/tenants/{tenantId}/services` - Assign service to tenant
