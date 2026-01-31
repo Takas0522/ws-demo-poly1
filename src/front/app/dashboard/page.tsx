@@ -2,7 +2,7 @@
 
 import { useAuth, canAccessMenu } from "@/lib/auth";
 import { DashboardLayout } from "@/components/layout";
-import Link from "next/link";
+import { DashboardCard } from "@/components/DashboardCard";
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -19,55 +19,30 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {canAccessMenu(user, "tenant-management") && (
-            <Link href="/tenants">
-              <div className="rounded-lg bg-white dark:bg-zinc-800 p-6 shadow hover:shadow-md transition-shadow cursor-pointer">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                  テナント管理
-                </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                  テナントの一覧表示・編集
-                </p>
-                <div className="mt-4">
-                  <span className="text-sm font-medium text-blue-600 hover:text-blue-500">
-                    詳細を見る →
-                  </span>
-                </div>
-              </div>
-            </Link>
+            <DashboardCard
+              title="テナント管理"
+              description="テナントの一覧表示・編集"
+              href="/tenants"
+              icon="🏢"
+            />
           )}
 
           {canAccessMenu(user, "user-management") && (
-            <Link href="/users">
-              <div className="rounded-lg bg-white dark:bg-zinc-800 p-6 shadow hover:shadow-md transition-shadow cursor-pointer">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                  ユーザー管理
-                </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                  ユーザーの一覧表示・編集
-                </p>
-                <div className="mt-4">
-                  <span className="text-sm font-medium text-blue-600 hover:text-blue-500">
-                    詳細を見る →
-                  </span>
-                </div>
-              </div>
-            </Link>
+            <DashboardCard
+              title="ユーザー管理"
+              description="ユーザーの一覧表示・編集"
+              href="/users"
+              icon="👥"
+            />
           )}
 
           {canAccessMenu(user, "service-settings") && (
-            <Link href="/service-settings">
-              <div className="rounded-lg bg-white dark:bg-zinc-800 p-6 shadow hover:shadow-md transition-shadow cursor-pointer">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                  サービス設定
-                </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">サービス割当の管理</p>
-                <div className="mt-4">
-                  <span className="text-sm font-medium text-blue-600 hover:text-blue-500">
-                    詳細を見る →
-                  </span>
-                </div>
-              </div>
-            </Link>
+            <DashboardCard
+              title="サービス設定"
+              description="サービス割当の管理"
+              href="/service-settings"
+              icon="⚙️"
+            />
           )}
         </div>
 

@@ -43,6 +43,7 @@ export function Sidebar() {
   const { user } = useAuth();
 
   // Filter menu items based on user's role
+  // Optimize by computing highest role once instead of per menu item
   const visibleMenuItems = menuItems.filter((item) => canAccessMenu(user, item.menuKey));
 
   return (

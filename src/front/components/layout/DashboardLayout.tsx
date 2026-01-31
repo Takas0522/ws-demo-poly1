@@ -23,7 +23,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   if (isLoading || !isAuthenticated) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-900">
-        <div className="text-zinc-600 dark:text-zinc-400">読み込み中...</div>
+        <div role="status" aria-live="polite" className="text-zinc-600 dark:text-zinc-400">
+          読み込み中...
+        </div>
       </div>
     );
   }
