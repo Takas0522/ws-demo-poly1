@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 import type { User, AuthState } from "./types";
 import { AuthClient } from "./authClient";
 
@@ -14,13 +14,23 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Initialize auth state from stored token on mount
+  useEffect(() => {
+    const initAuth = () => {
+      const storedUser = AuthClient.getUserFromStoredToken();
+      setUser(storedUser);
+      setIsLoading(false);
+    };
+    initAuth();
+  }, []);
 
   const login = useCallback(async (loginId: string, password: string) => {
     setIsLoading(true);
     try {
-      const response = await AuthClient.login(loginId, password);
-      setUser(response.user);
+      const result = await AuthClient.login(loginId, password);
+      setUser(result.user);
     } finally {
       setIsLoading(false);
     }
@@ -38,11 +48,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const refreshAuth = useCallback(async () => {
     try {
-      const user = await AuthClient.verify();
-      setUser(user);
-    } catch (error) {
+      await AuthClient.refresh();
+      // Extract user from new token
+      const storedUser = AuthClient.getUserFromStoredToken();
+      setUser(storedUser);
+    } catch {
       setUser(null);
-      throw error;
+      throw new Error("Token refresh failed");
     }
   }, []);
 
