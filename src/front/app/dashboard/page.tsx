@@ -60,9 +60,7 @@ export default function DashboardPage() {
                 <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                   サービス設定
                 </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                  サービス割当の管理
-                </p>
+                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">サービス割当の管理</p>
                 <div className="mt-4">
                   <span className="text-sm font-medium text-blue-600 hover:text-blue-500">
                     詳細を見る →
