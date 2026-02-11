@@ -145,8 +145,10 @@ npm start
 
 ## 関連ドキュメント
 
-- [コンポーネント設計](../../docs/arch/components/README.md#1-frontend-nextjs)
-- [API設計仕様書](../../docs/arch/api/api-specification.md)
+- [コンポーネント設計](./docs/component-design.md)
+- [BFF API設計仕様書](./docs/api-specification.md)
+- [API共通仕様](../../docs/arch/api/api-specification.md)
+- [IaC定義](./infra/)
 
 ## ライセンス
 
