@@ -253,6 +253,48 @@ class APIClient {
     );
     return response.data;
   }
+
+  // サービス機能管理
+  async getServiceFeatures(serviceId: string, token: string) {
+    const response = await this.serviceClient.get(
+      `/api/v1/services/${serviceId}/features`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
+    return response.data;
+  }
+
+  async getTenantServiceFeatures(
+    tenantId: string,
+    serviceId: string,
+    token: string,
+  ) {
+    const response = await this.serviceClient.get(
+      `/api/v1/tenants/${tenantId}/services/${serviceId}/features`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
+    return response.data;
+  }
+
+  async updateTenantServiceFeature(
+    tenantId: string,
+    serviceId: string,
+    featureId: string,
+    data: { is_enabled: boolean },
+    token: string,
+  ) {
+    const response = await this.serviceClient.put(
+      `/api/v1/tenants/${tenantId}/services/${serviceId}/features/${featureId}`,
+      data,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
+    return response.data;
+  }
 }
 
 export const apiClient = new APIClient();
