@@ -21,7 +21,7 @@ export async function PUT(
     if (!token) {
       return NextResponse.json({ error: 'No token found' }, { status: 401 });
     }
-    const result = await apiClient.updateUser(id, { roles: data.roles }, token);
+    const result = await apiClient.updateUserRoles(id, data.roles, token);
     
     return NextResponse.json(result);
   } catch (error: unknown) {

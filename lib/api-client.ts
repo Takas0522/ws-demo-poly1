@@ -106,6 +106,21 @@ class APIClient {
     return response.data;
   }
 
+  async updateUserRoles(userId: string, roles: Array<{service_id: string; role_code: string}>, token: string) {
+    const results = [];
+    for (const role of roles) {
+      const response = await this.authClient.post('/api/v1/roles/assign', {
+        user_id: userId,
+        role_id: role.role_code,
+        service_id: role.service_id,
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      results.push(response.data);
+    }
+    return { message: 'Roles updated successfully', results };
+  }
+
   async deleteUser(userId: string, token: string) {
     const response = await this.authClient.delete(`/api/v1/users/${userId}`, {
       headers: { Authorization: `Bearer ${token}` },
