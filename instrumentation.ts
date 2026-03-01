@@ -37,6 +37,10 @@ export async function register() {
         .setAutoCollectDependencies(true)
         .start();
 
+      appInsights.defaultClient.context.tags[
+        appInsights.defaultClient.context.keys.cloudRole
+      ] = "frontend";
+
       console.info(
         "[Telemetry] サーバーサイド Application Insights を初期化しました",
       );
