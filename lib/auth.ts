@@ -5,15 +5,17 @@ const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || "default-secret-key",
 );
 
+export interface Role {
+  service_id: string;
+  service_name: string;
+  role_code: string;
+  role_name: string;
+}
+
 export interface JWTPayload {
   user_id: string;
   tenant_id: string;
-  roles: Array<{
-    service_id: string;
-    service_name: string;
-    role_code: string;
-    role_name: string;
-  }>;
+  roles: Role[];
 }
 
 /**
