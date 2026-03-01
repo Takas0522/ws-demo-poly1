@@ -38,6 +38,18 @@ param tenantServiceFqdn string
 @description('Service Setting Service の FQDN')
 param serviceSettingServiceFqdn string
 
+// --- EasyAuth (Entra ID) 設定 ---
+
+@description('Entra ID アプリケーション (クライアント) ID')
+param entraClientId string
+
+@secure()
+@description('Entra ID クライアントシークレット')
+param entraClientSecret string
+
+@description('Entra ID テナント ID')
+param entraTenantId string
+
 // --- スケーリング設定 ---
 
 @description('最小レプリカ数')
@@ -83,6 +95,10 @@ resource frontendApp 'Microsoft.App/containerApps@2023-05-01' = {
           name: 'acr-password'
           value: listCredentials(resourceId('Microsoft.ContainerRegistry/registries', containerRegistryName), '2023-07-01').passwords[0].value
         }
+        {
+          name: 'microsoft-provider-authentication-secret'
+          value: entraClientSecret
+        }
       ]
     }
     template: {
@@ -118,6 +134,36 @@ resource frontendApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
           }
         ]
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// EasyAuth (Entra ID 認証) 設定
+// -----------------------------------------------------------------------------
+resource authConfig 'Microsoft.App/containerApps/authConfigs@2023-05-01' = {
+  parent: frontendApp
+  name: 'current'
+  properties: {
+    platform: {
+      enabled: true
+    }
+    globalValidation: {
+      unauthenticatedClientAction: 'RedirectToLoginPage'
+    }
+    identityProviders: {
+      azureActiveDirectory: {
+        registration: {
+          clientId: entraClientId
+          clientSecretSettingName: 'microsoft-provider-authentication-secret'
+          openIdIssuer: 'https://sts.windows.net/${entraTenantId}/v2.0'
+        }
+        validation: {
+          allowedAudiences: [
+            'api://${entraClientId}'
+          ]
+        }
       }
     }
   }
