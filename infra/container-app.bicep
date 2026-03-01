@@ -110,9 +110,9 @@ resource frontendApp 'Microsoft.App/containerApps@2023-05-01' = {
             { name: 'NODE_ENV', value: 'production' }
             { name: 'PORT', value: '3000' }
             { name: 'HOSTNAME', value: '0.0.0.0' }
-            { name: 'AUTH_SERVICE_URL', value: 'https://${authServiceFqdn}' }
-            { name: 'TENANT_SERVICE_URL', value: 'https://${tenantServiceFqdn}' }
-            { name: 'SERVICE_SETTING_URL', value: 'https://${serviceSettingServiceFqdn}' }
+            { name: 'NEXT_PUBLIC_AUTH_SERVICE_URL', value: 'https://${authServiceFqdn}' }
+            { name: 'NEXT_PUBLIC_TENANT_SERVICE_URL', value: 'https://${tenantServiceFqdn}' }
+            { name: 'NEXT_PUBLIC_SERVICE_SETTING_URL', value: 'https://${serviceSettingServiceFqdn}' }
             { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsightsConnectionString }
           ]
           resources: {
