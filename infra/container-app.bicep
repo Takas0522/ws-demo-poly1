@@ -50,6 +50,10 @@ param entraClientSecret string
 @description('Entra ID テナント ID')
 param entraTenantId string
 
+@secure()
+@description('JWT Secret Key（auth-service と同一のものを設定）')
+param jwtSecretKey string
+
 // --- スケーリング設定 ---
 
 @description('最小レプリカ数')
@@ -99,6 +103,10 @@ resource frontendApp 'Microsoft.App/containerApps@2023-05-01' = {
           name: 'microsoft-provider-authentication-secret'
           value: entraClientSecret
         }
+        {
+          name: 'jwt-secret-key'
+          value: jwtSecretKey
+        }
       ]
     }
     template: {
@@ -113,6 +121,7 @@ resource frontendApp 'Microsoft.App/containerApps@2023-05-01' = {
             { name: 'NEXT_PUBLIC_AUTH_SERVICE_URL', value: 'https://${authServiceFqdn}' }
             { name: 'NEXT_PUBLIC_TENANT_SERVICE_URL', value: 'https://${tenantServiceFqdn}' }
             { name: 'NEXT_PUBLIC_SERVICE_SETTING_URL', value: 'https://${serviceSettingServiceFqdn}' }
+            { name: 'JWT_SECRET', secretRef: 'jwt-secret-key' }
             { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsightsConnectionString }
           ]
           resources: {
@@ -157,11 +166,12 @@ resource authConfig 'Microsoft.App/containerApps/authConfigs@2023-05-01' = {
         registration: {
           clientId: entraClientId
           clientSecretSettingName: 'microsoft-provider-authentication-secret'
-          openIdIssuer: 'https://sts.windows.net/${entraTenantId}/v2.0'
+          openIdIssuer: '${az.environment().authentication.loginEndpoint}${entraTenantId}/v2.0'
         }
         validation: {
           allowedAudiences: [
             'api://${entraClientId}'
+            entraClientId
           ]
         }
       }
