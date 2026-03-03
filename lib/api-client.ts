@@ -268,6 +268,14 @@ class APIClient {
     );
     return response.data;
   }
+
+  // デバッグ用
+  async triggerDebugError500(token: string) {
+    const response = await this.tenantClient.get("/api/v1/debug/error500", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  }
 }
 
 export const apiClient = new APIClient();
