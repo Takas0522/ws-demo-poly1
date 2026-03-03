@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useAuth } from '@/hooks/useAuth';
-import { MainLayout } from '@/components/layouts/MainLayout';
-import { useState } from 'react';
+import { MainLayout } from "@/components/layouts/MainLayout";
+import { useAuth } from "@/hooks/useAuth";
+import { useState } from "react";
 
 export default function DashboardPage() {
   const { user, isLoading } = useAuth();
@@ -13,15 +13,19 @@ export default function DashboardPage() {
     setIsErrorLoading(true);
     setErrorResult(null);
     try {
-      const response = await fetch('/api/debug/error500');
+      const response = await fetch("/api/debug/error500");
       const data = await response.json();
       if (!response.ok) {
-        setErrorResult(`エラー発生 (HTTP ${response.status}): ${JSON.stringify(data)}`);
+        setErrorResult(
+          `エラー発生 (HTTP ${response.status}): ${JSON.stringify(data)}`,
+        );
       } else {
         setErrorResult(`レスポンス: ${JSON.stringify(data)}`);
       }
     } catch (err) {
-      setErrorResult(`例外発生: ${err instanceof Error ? err.message : String(err)}`);
+      setErrorResult(
+        `例外発生: ${err instanceof Error ? err.message : String(err)}`,
+      );
     } finally {
       setIsErrorLoading(false);
     }
@@ -69,7 +73,7 @@ export default function DashboardPage() {
             disabled={isErrorLoading}
             className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isErrorLoading ? '送信中...' : '500エラーを発生させる'}
+            {isErrorLoading ? "送信中..." : "500エラーを発生させる"}
           </button>
           {errorResult && (
             <div className="mt-4 p-3 bg-gray-100 rounded text-sm font-mono text-gray-800 break-all">
